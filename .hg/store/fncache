@@ -1,0 +1,4 @@
+data/.hgignore.i
+data/Makefile.i
+data/\.i
+data/unix/submit/p00/arc.tar.gz.i
