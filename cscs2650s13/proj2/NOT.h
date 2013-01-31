@@ -1,6 +1,7 @@
 char NOT(arg1)
 {
 	char result;
+	arg1 = arg1 - 48;
 
 	if (arg1 == 1)
 	{

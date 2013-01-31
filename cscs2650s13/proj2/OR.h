@@ -1,6 +1,8 @@
 char OR(arg1, arg2)
 {
 	char result;
+	arg1 = arg1 - 48;
+	arg2 = arg2 - 48;
 
 	if (arg1 == 1)
 	{

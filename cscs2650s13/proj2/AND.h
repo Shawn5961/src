@@ -1,6 +1,8 @@
 char AND(arg1, arg2)
 {
 	char result;
+	arg1 = arg1 - 48;
+	arg2 = arg2 - 48;
 
 	if (arg1 == 1)
 	{
@@ -17,4 +19,6 @@ char AND(arg1, arg2)
 	{
 		result = 0;
 	}
+
+	return result;
 }
