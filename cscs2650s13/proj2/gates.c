@@ -33,7 +33,7 @@ int main()
 			printf("Input the second value to be evalutated with the AND function: ");
 			arg2 = getchar();
 			while (getchar() != '\n');
-			printf("The AND of %c and %c is %d.\n", arg1, arg2, AND(arg1, arg2));
+			printf("The AND of %c and %c is %d.\n", arg1, arg2, AND(arg1,arg2));
 			break;
 		}
 
@@ -45,7 +45,7 @@ int main()
 			printf("Input the second value to be evalutated with the OR function: ");
 			arg2 = getchar();
 			while (getchar() != '\n');
-			printf("The OR of %c and %c is %d.\n", arg1, arg2, OR(arg1, arg2));
+			printf("The OR of %c and %c is %d.\n", arg1, arg2, OR(arg1,arg2));
 			break;
 		}
 
