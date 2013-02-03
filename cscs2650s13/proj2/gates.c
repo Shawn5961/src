@@ -1,59 +1,42 @@
 #include <stdio.h>
+#include "STATES.h"
 #include "NOT.h"
 #include "OR.h"
 #include "AND.h"
 
-int main()
+int main(int argc, char **argv)
 {
-	char arg1, arg2, choice;
+	trueState = **(argv+1);
+	falseState = **(argv+2);
 
-	printf("Please choose an operation:\n");
-	printf("a) NOT\n");
-	printf("b) AND\n");
-	printf("c) OR\n");
-	choice = getchar();
-	while (getchar() != '\n');
-
-	switch (choice)
+	if (argc <= 2)
 	{
-		case 'a':
-		{
-			printf("Input the value to be evaluated with the NOT function: ");
-			arg1 = getchar();
-			while (getchar() != '\n');
-			printf("The NOT of %c is %d.\n", arg1, NOT(arg1));
-			break;
-		}
-	
-		case 'b':
-		{
-			printf("Input the first value to be evalutated with the AND function: ");
-			arg1 = getchar();
-			while (getchar() != '\n');
-			printf("Input the second value to be evalutated with the AND function: ");
-			arg2 = getchar();
-			while (getchar() != '\n');
-			printf("The AND of %c and %c is %d.\n", arg1, arg2, AND(arg1,arg2));
-			break;
-		}
-
-		case 'c':
-		{
-			printf("Input the first value to be evalutated with the OR function: ");
-			arg1 = getchar();
-			while (getchar() != '\n');
-			printf("Input the second value to be evalutated with the OR function: ");
-			arg2 = getchar();
-			while (getchar() != '\n');
-			printf("The OR of %c and %c is %d.\n", arg1, arg2, OR(arg1,arg2));
-			break;
-		}
-
-		default:
-		{
-			fprintf(stdout, "You have entered an invalid option.");
-			break;
-		}
+		printf("\nNot enough arguments defined. You must define two arguments.\n");
 	}
+	else if (argc > 3)
+	{
+		printf("\nToo many arguments defined. You must define two arguments.\n");
+	}
+	else
+	{
+		printf("\nNOT %c: %c\n",trueState,NOT(trueState));
+		printf("NOT %c: %c\n",falseState,NOT(falseState));
+
+		printf("\n%c AND %c: %c\n",trueState, trueState, AND(trueState,trueState));
+		printf("%c AND %c: %c\n",trueState, falseState, AND(trueState,falseState));
+		printf("%c AND %c: %c\n",falseState, trueState, AND(falseState,trueState));
+		printf("%c AND %c: %c\n",falseState, falseState, AND(falseState,falseState));
+
+		printf("\n%c OR %c: %c\n",trueState, trueState, OR(trueState,trueState));
+		printf("%c OR %c: %c\n",trueState, falseState, OR(trueState,falseState));
+		printf("%c OR %c: %c\n",falseState, trueState, OR(falseState,trueState));
+		printf("%c OR %c: %c\n",falseState, falseState, OR(falseState,falseState));
+
+		printf("\n%c XOR %c: %c\n",trueState, trueState, OR(AND(trueState,NOT(trueState)),AND(NOT(trueState),trueState)));
+		printf("%c XOR %c: %c\n",trueState, falseState, OR(AND(trueState,NOT(falseState)),AND(NOT(trueState),falseState)));
+		printf("%c XOR %c: %c\n",falseState, trueState, OR(AND(falseState,NOT(trueState)),AND(NOT(falseState),trueState)));
+		printf("%c XOR %c: %c\n",falseState, falseState, OR(AND(falseState,NOT(falseState)),AND(NOT(falseState),falseState)));
+	}
+
 	return 0;
 }

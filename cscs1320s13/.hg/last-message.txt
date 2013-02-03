@@ -1,1 +1,1 @@
-Added chars.c
+Changed adder to accept command line arguments, reorganized directories

@@ -1,23 +1,21 @@
-char AND(arg1, arg2)
+char AND(input1, input2)
 {
 	char result;
-	arg1 = arg1 - 48;
-	arg2 = arg2 - 48;
 
-	if (arg1 == 1)
+	if (input1 == trueState)
 	{
-		if (arg2 == 1)
+		if (input2 == trueState)
 		{
-			result = 1;
+			result = trueState;
 		}
 		else
 		{
-			result = 0;
+			result = falseState;
 		}
 	}
 	else
 	{
-		result = 0;
+		result = falseState;
 	}
 
 	return result;

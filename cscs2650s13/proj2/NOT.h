@@ -1,15 +1,14 @@
-char NOT(arg1)
+char NOT(input)
 {
 	char result;
-	arg1 = arg1 - 48;
 
-	if (arg1 == 1)
+	if (input == trueState)
 	{
-		result = 0;
+		result = falseState;
 	}
 	else
 	{
-		result = 1;
+		result = trueState;
 	}
 
 	return result;
