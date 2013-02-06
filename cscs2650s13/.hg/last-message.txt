@@ -1,1 +1,1 @@
-Finished proj2, reorganized folders
+Created logic folder, began LOGIC.h

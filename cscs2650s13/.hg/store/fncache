@@ -9,3 +9,8 @@ data/proj2/OR.h.i
 data/proj2/STATES.h.i
 data/proj2/gates.i
 data/proj2/gates.c.i
+data/logic/LOGIC.h.i
+data/logic/NOT.h.i
+data/logic/OR.h.i
+data/logic/STATES.h.i
+data/logic/XOR.h.i
