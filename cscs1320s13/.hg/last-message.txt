@@ -1,1 +1,1 @@
-Changed adder to accept command line arguments, reorganized directories
+Fixed powers for power of 0
