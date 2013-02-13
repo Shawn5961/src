@@ -93,7 +93,7 @@ char XOR(input1, input2)
 {
 	char result;
 	
-	result = OR(AND(NOT(input1), input2), AND(input1), (NOT(input2)));
+	result = OR(AND(NOT(input1), input2), AND(input1, NOT(input2)));
 
 	return result;
 }
@@ -132,4 +132,20 @@ char FULLCARRY(input1, input2, input3)
 	carry = OR(AND(XOR(input1, input2), input3), AND(input1, input2));
 
 	return carry;
+}
+
+char MULTIPLEX(input1, x0, x1)
+{
+	char result;
+
+	result = OR(AND(NOT(NOT(input1)), x1), AND(NOT(input1), x0));
+
+	return result;
+}
+
+char DEMUX(inputA, in)
+{
+
+
+
 }

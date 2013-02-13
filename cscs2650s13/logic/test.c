@@ -32,27 +32,27 @@ int main(int argc, char* argv[])
 	else if (choice == '7' || choice == '8')
 	{
 		printf("\nWhat is the first input state to be operated on?\n");
-		while (input1 != '\n')
-			input1 = getchar();
+		input1 = getchar();
+		getchar();
 		printf("What is the second input state to be operated on?\n");
-		while (input2 != '\n')
-			input2 = getchar();	
+		input2 = getchar();	
+		getchar();
 		printf("What is the carry state to be operated on?\n");
-		while (carry != '\n')
-			carry = getchar();
+		carry = getchar();
+		getchar();
 	}
 	else if (choice != '9' && choice != '8')
 	{
 		printf("\nWhat is the first input state to be operated on?\n");
-		while (input1 != '\n')
-			input1 = getchar();
+		input1 = getchar();
+		getchar();
 		printf("What is the second input state to be operated on?\n");
-		while (input2 != '\n')
-			input2 = getchar();	
+		input2 = getchar();
+		getchar();	
 	}
 	else
 	{
-		printf("\nThank you for using the program");
+		printf("\nThank you for using the program\n");
 		exit(0);
 	}
 
