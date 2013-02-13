@@ -93,35 +93,59 @@ char XOR(input1, input2)
 {
 	char result;
 	
-	result = OR(AND(NOT(input1), input2), AND(input1), (NOT(input2)));
+	result = OR(AND(NOT(input1), input2), AND(input1, NOT(input2)));
 
 	return result;
 }
 
 char HALFSUM(input1, input2)
 {
-	char result;
+	char sum;
 
-	result = XOR(input1, input2);
+	sum = XOR(input1, input2);
 
-	return result;
+	return sum;
 }
 
 char HALFCARRY(input1, input2)
 {
-	char result;
+	char carry;
 	
-	result = AND(input1, input2);
+	carry = AND(input1, input2);
 
-	return result;
+	return carry;
 }
 
 char FULLSUM(input1, input2, input3)
 {
-	
+	char sum;
+
+	sum = XOR(XOR(input1, input2), input3);
+
+	return sum;
 }
 
 char FULLCARRY(input1, input2, input3)
 {
+	char carry;
+
+	carry = OR(AND(XOR(input1, input2), input3), AND(input1, input2));
+
+	return carry;
+}
+
+char MULTIPLEX(input1, x0, x1)
+{
+	char result;
+
+	result = OR(AND(NOT(NOT(input1)), x1), AND(NOT(input1), x0));
+
+	return result;
+}
+
+char DEMUX(inputA, in)
+{
+
+
 
 }
