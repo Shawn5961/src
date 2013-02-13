@@ -129,7 +129,7 @@ char FULLCARRY(input1, input2, input3)
 {
 	char carry;
 
-	carry = OR(AND(XOR(input1, input2), input3), AND(input1, input2);
+	carry = OR(AND(XOR(input1, input2), input3), AND(input1, input2));
 
 	return carry;
 }
