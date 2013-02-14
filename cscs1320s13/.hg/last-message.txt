@@ -1,1 +1,1 @@
-Fixed powers for power of 0
+Added selfprojects folder, guesser.c

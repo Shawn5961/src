@@ -2,7 +2,7 @@
 #define FALSESTATE '0'
 #define INVALID 'x' 
 
-char AND(input1, input2)
+char AND(char input1, char input2)
 {
 	char result;
 	
@@ -33,7 +33,7 @@ char AND(input1, input2)
 	return result;
 }
 
-char OR(input1, input2)
+char OR(char input1, char input2)
 {
 	char result;
 	
@@ -60,7 +60,7 @@ char OR(input1, input2)
 	return result;
 }
 
-char NOT(input1)
+char NOT(char input1)
 {
 	char result;
 	
@@ -80,7 +80,7 @@ char NOT(input1)
 	return result;
 }
 
-char NAND(input1, input2)
+char NAND(char input1, char input2)
 {
 	char result;
 	
@@ -89,7 +89,7 @@ char NAND(input1, input2)
 	return result;
 }
 
-char XOR(input1, input2)
+char XOR(char input1, char input2)
 {
 	char result;
 	
@@ -98,7 +98,7 @@ char XOR(input1, input2)
 	return result;
 }
 
-char HALFSUM(input1, input2)
+char HALFSUM(char input1, char input2)
 {
 	char sum;
 
@@ -107,7 +107,7 @@ char HALFSUM(input1, input2)
 	return sum;
 }
 
-char HALFCARRY(input1, input2)
+char HALFCARRY(char input1, char input2)
 {
 	char carry;
 	
@@ -116,7 +116,7 @@ char HALFCARRY(input1, input2)
 	return carry;
 }
 
-char FULLSUM(input1, input2, input3)
+char FULLSUM(char input1, char input2, char input3)
 {
 	char sum;
 
@@ -125,7 +125,7 @@ char FULLSUM(input1, input2, input3)
 	return sum;
 }
 
-char FULLCARRY(input1, input2, input3)
+char FULLCARRY(char input1, char input2, char input3)
 {
 	char carry;
 
@@ -134,7 +134,7 @@ char FULLCARRY(input1, input2, input3)
 	return carry;
 }
 
-char MULTIPLEX(input1, x0, x1)
+char MULTIPLEX(char input1, char x0, char x1)
 {
 	char result;
 

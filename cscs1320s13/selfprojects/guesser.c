@@ -4,11 +4,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 
 int main()
 {
-	int numPlaces, userNum, guess;
-	double startTime, endTime, runTime;
+	int numPlaces, userNum, guess, guessMax;
 	int counter;
 	
 	printf("What is the range of numbers you wish the program to guess\n");
@@ -18,11 +18,13 @@ int main()
 	printf("4: 0 - 10000\n");
 	printf("5: 0 - 100000\n");
 	scanf("%d", &numPlaces);
+	getchar();
 
 	printf("\nInput the number you wish the program to guess\n");
 	scanf("%d", &userNum);
+	getchar();
 
-	printf("Break: if statement");
+//printf("\nBreak: if statement\n");
 	
 	if (userNum > (10 * numPlaces))
 	{
@@ -31,25 +33,23 @@ int main()
 		exit(0);
 	}
 
-	printf("Break: loop setup");
+//printf("\nBreak: loop setup\n");
 
 	counter = 0;
-	startTime = time(NULL);
+	guessMax = pow(10, numPlaces);
 	srand(time(NULL));
 
-	printf("Break: loop begins");
+//printf("\nBreak: loop begins\n");
 
 	do
 	{
-		guess = rand() * (10 * numPlaces);
+		guess = rand() % guessMax;
+		printf("%d\n", guess);
 		counter++;
 	} while (guess != userNum);
 
-	endTime = time(NULL);
-	runTime = endTime - startTime;
 
-	printf("It took the program %d guesses to guess the number %d", counter, userNum);
-	printf("It took %d seconds to guess the number", runTime);
+	printf("\nIt took the program %d guesses to guess the number %d\n", counter, userNum);
 
 	return 0;
 }

@@ -17,3 +17,4 @@ data/proj1/hello.i
 data/logic/OR.h.i
 data/logic/LOGIC.h.i
 data/logic/NOT.h.i
+data/.gitignore.i
