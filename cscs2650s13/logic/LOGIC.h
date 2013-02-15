@@ -145,7 +145,14 @@ char MULTIPLEX(char input1, char x0, char x1)
 
 char DEMUX(inputA, in)
 {
+	struct demuxOut; 
+	{
+		char out0;
+		char out1;
+	};
 
+	out0 = AND(NOT(inputA), IN);
+	out1 = AND(NOT(NOT(inputA), IN);
 
-
+	return demuxOut;
 }
