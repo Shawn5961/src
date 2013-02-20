@@ -1,1 +1,1 @@
-Added demux to LOGIC.h
+Added VAND to LOGIC.h

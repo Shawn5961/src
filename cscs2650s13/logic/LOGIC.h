@@ -156,3 +156,28 @@ char DEMUX(inputA, in)
 
 	return demuxOut;
 }
+
+char VAND(int numArgs, ...)
+{
+	va_list args;
+	va_start(args, numArgs);
+	
+	char arg, result;
+	int i;
+
+	for (i = 0; i < numArgs; i++)
+	{
+		if (i == numArgs)
+		{
+			result = arg;
+		}
+		else
+		{
+			result = AND(result, arg);
+		}
+	}
+
+	va_end(args);
+
+	return result;
+}
