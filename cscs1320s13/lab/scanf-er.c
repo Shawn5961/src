@@ -26,7 +26,6 @@ int main()
 	getchar();
 	fscanf(stdin, "%c", &d);
 
-
 	fprintf(stdout, "Your ints are: %u and %u\n",a, *b);
 	fprintf(stdout, "Your short int is: %hu\n", c);
 	fprintf(stdout, "Your float (trimmed at 2 decimal places) is: %.2f\n", e);
