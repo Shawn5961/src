@@ -1,1 +1,1 @@
-Added VAND to LOGIC.h
+Updated test.c

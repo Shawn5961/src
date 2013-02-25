@@ -143,7 +143,7 @@ char MULTIPLEX(char input1, char x0, char x1)
 	return result;
 }
 
-char DEMUX(inputA, in)
+char DEMUX(char inputA, char in)
 {
 	struct demuxOut; 
 	{
@@ -181,3 +181,16 @@ char VAND(int numArgs, ...)
 
 	return result;
 }
+
+char NANDL(char input1, char input2)
+{
+	struct nandlOut
+	{
+		char out1, out2;
+	}
+
+	out1 = NAND(input1, out2);
+	out2 = NAND(input2, out1);
+
+	return nandlOut;	
+} 
