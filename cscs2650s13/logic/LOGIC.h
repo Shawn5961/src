@@ -89,6 +89,15 @@ char NAND(char input1, char input2)
 	return result;
 }
 
+char NOR(char input1, char input2)
+{
+	char result;
+	
+	result = NOT(OR(input1, input2));
+
+	return result;
+}
+
 char XOR(char input1, char input2)
 {
 	char result;
@@ -193,4 +202,17 @@ char NANDL(char input1, char input2)
 	out2 = NAND(input2, out1);
 
 	return nandlOut;	
+} 
+
+char NORL(char input1, char input2)
+{
+	struct norlOut
+	{
+		char out1, out2;
+	}
+
+	out1 = NOR(input1, out2);
+	out2 = NOR(input2, out1);
+
+	return norlOut;	
 } 
