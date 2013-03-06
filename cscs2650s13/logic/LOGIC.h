@@ -216,3 +216,15 @@ char NORL(char input1, char input2)
 
 	return norlOut;	
 } 
+
+char CLOCKNAND(char input1, char input2, char clock)
+{
+	struct clockNandOut{
+		char out1, out2;
+	}
+
+	out1 = NAND(NAND(input1, clock), out2);
+	out2 = NAND(NAND(input1, clock), out1);
+
+	return clockNandOut;
+}
