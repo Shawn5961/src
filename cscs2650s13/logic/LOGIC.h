@@ -196,7 +196,7 @@ char NANDL(char input1, char input2)
 	struct nandlOut
 	{
 		char out1, out2;
-	}
+	};
 
 	out1 = NAND(input1, out2);
 	out2 = NAND(input2, out1);
@@ -209,7 +209,7 @@ char NORL(char input1, char input2)
 	struct norlOut
 	{
 		char out1, out2;
-	}
+	};
 
 	out1 = NOR(input1, out2);
 	out2 = NOR(input2, out1);
@@ -221,10 +221,22 @@ char CLOCKNAND(char input1, char input2, char clock)
 {
 	struct clockNandOut{
 		char out1, out2;
-	}
+	};
 
 	out1 = NAND(NAND(input1, clock), out2);
 	out2 = NAND(NAND(input1, clock), out1);
 
 	return clockNandOut;
+}
+
+char RSFLIPFLOP(char input1, char input2, char clock)
+{
+	struct rsFlipFlopOut{
+		char out1, out2;
+	};
+
+	out1 = NAND(NAND(,NOT(clock)),out2)
+	out2 = NAND(NAND(,NOT(clock)),out1)
+
+	return rsFlipFlopOut;	
 }
