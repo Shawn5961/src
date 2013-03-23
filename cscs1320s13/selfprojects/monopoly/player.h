@@ -5,9 +5,11 @@
 class Player{
 	int money, netWorth, number;
 	bool isAlive;
+	char playerName[80];
 public:
 	void set_values(int, int, int, bool);
-	bool setAlive(bool);
+	void setAlive(bool);
+	void setName();
 	int incMoney(int, int);
 	int decMoney(int, int);
 	int incWorth(int, int);
@@ -16,20 +18,25 @@ public:
 	int getMoney();
 	int getWorth();
 	bool getAlive();
+	char* getName();
 };
 
 void Player::set_values(int a, int b, int c, bool d)
 {
 	money = a;
 	netWorth = b;
-	number = c;
+	number = c + 1;
 	isAlive = d;
 }
 
-bool Player::setAlive(bool alive)
+void Player::setAlive(bool alive)
 {
 	isAlive = alive;
-	return alive;
+}
+
+void Player::setName()
+{
+	scanf("%s", playerName);
 }
 
 int Player::incMoney(int curMoney, int change)
@@ -78,3 +85,7 @@ bool Player::getAlive()
 	return isAlive;
 }
 
+char* Player::getName()
+{
+	return playerName;
+}
