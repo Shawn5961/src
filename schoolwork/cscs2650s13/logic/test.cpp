@@ -83,6 +83,18 @@ int main()
 	logicTester.DEMUX('0', '0');
 	printf("DEMUX| 0 | 0 |  %c  |  %c  |\n", logicTester.getOut0(), logicTester.getOut1());
 	
+	printf("\nRSNANDL| s | r | q |qbar |\n");
+	printf("--------------------------\n");
+	logicTester.NANDL('0', '0');
+	printf("RSNANDL| 0 | 0 | %c |  %c  |\n", logicTester.getQ(), logicTester.getQBar());
+	logicTester.NANDL('0', '1');
+	printf("RSNANDL| 0 | 1 | %c |  %c  |\n", logicTester.getQ(), logicTester.getQBar());
+	logicTester.NANDL('1', '0');
+	printf("RSNANDL| 1 | 0 | %c |  %c  |\n", logicTester.getQ(), logicTester.getQBar());
+	logicTester.NANDL('1', '1');
+	printf("RSNANDL| 1 | 1 | %c |  %c  |\n", logicTester.getQ(), logicTester.getQBar());
+	logicTester.NANDL('1', '0');
+	printf("RSNANDL| 1 | 0 | %c |  %c  |\n", logicTester.getQ(), logicTester.getQBar());
 	return 0;
 
 }

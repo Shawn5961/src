@@ -21,7 +21,10 @@ public:
 	char MULTIPLEX(char, char, char);
 	char getOut0();
 	char getOut1();
+	char getQ();
+	char getQBar();
 	void DEMUX(char, char);
+	void NANDL(char, char);
 };
 
 char Logic::AND(char in1, char in2)
@@ -166,8 +169,40 @@ char Logic::getOut1()
 	return out1;
 }
 	
+char Logic::getQ()
+{
+	return q;
+}
+
+char Logic::getQBar()
+{
+	return qbar;
+}
+
 void Logic::DEMUX(char a, char in1)
 {
 	out0 = AND(NOT(a), in1);
 	out1 = AND(NOT(NOT(a)), in1);
+}
+
+void Logic::NANDL(char s, char r)
+{
+	if(s == FALSESTATE)
+	{
+		if(r == FALSESTATE)
+		{
+			q = INVALID;
+			qbar = INVALID;
+		}
+		else
+		{
+			q = TRUESTATE;
+			qbar = NAND(r, q);
+		}
+	}
+	else if(r == FALSESTATE)
+	{
+		qbar = TRUESTATE;
+		q = NAND(s, qbar);
+	}
 }
