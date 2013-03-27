@@ -10,9 +10,9 @@ export PS1="`EXT_COLOR 255`\342\224\214\342\224\200"\
 "`EXT_COLOR 178`\u"\
 "`EXT_COLOR 255`@"\
 "`EXT_COLOR 51`\h"\
-"`EXT_COLOR 255`]\[\033[\]\342\224\214\342\224\200["\
+"`EXT_COLOR 255`]\342\224\200["\
 "`EXT_COLOR 25`\t"\
-"`EXT_COLOR 255`]\[\033[\]\342\224\214\342\224\200["\
+"`EXT_COLOR 255`]\342\224\200["\
 "`EXT_COLOR 34`\w"\
 "`EXT_COLOR 255`]"\
 "`EXT_COLOR 255`\n\[\033[0;37m\]\342\224\224\342\224\200\342\224\200\342\225\274\[\033[0m\] "
@@ -22,3 +22,8 @@ alias ls="ls --color"
 
 #256 color!
 export TERM="xterm-256color"
+
+#utf-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8

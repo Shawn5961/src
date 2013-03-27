@@ -10,7 +10,6 @@ Player player[8];
 
 void initGame()
 {
-	printf("Shawn Meas is a F'in Boss!");
 	printf("Welcome to Meas-opoly!\n");
 	printf("\nTo get started, how many people will be playing?\n");
 	

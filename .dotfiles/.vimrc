@@ -8,7 +8,6 @@ set number                    " show line numbers
 set cindent                   " automatic C-style indenting
 set autoindent                " copy indent from current line when starting a new line
 set smarttab                  " makes tabs/backspace more helpful at the beginning of lines
-set showmode                  " show the mode when in insert/replace/visual
 set showcmd                   " show partial commands
 set directory=~/.vim/swap     " directory for swap files
 
@@ -20,7 +19,9 @@ endif
 set tabstop=4                 " number of spaces that a tab counts for
 set shiftwidth=4              " number of spaces to use for each step of (auto)indent
 silent! set mouse=a           " enable mouse if it exists
-silent! set encoding=utf-8    " enable default encoding if it exists
+scriptencoding utf-8
+set encoding=utf-8    " enable default encoding if it exists
+set termencoding=utf-8
 set list                      " show tabs and EOL
 set listchars=tab:»\ ,trail:· " show tabs as right arrow quotes and trailing spaces as bullets
 set winminheight=0            " the minimum height of a non-focused window
@@ -83,9 +84,6 @@ nnoremap zt za
 " <j><j> in insert mode will simulate an escape
 " (only useful on a non-full keyboard)
 inoremap jj <Esc>
-
-" rebound caps lock for autocompletion
-inoremap <End> <C-P>
 
 " reselect visual block after indent / outdent
 vnoremap < <gv
@@ -168,3 +166,30 @@ hi Identifier   ctermfg=14   ctermbg=none cterm=none
 hi Comment      ctermfg=15   ctermbg=none cterm=none
 
 match WhitespaceEOL /\s\+$/
+
+let g:Powerline_symbols = 'unicode'
+
+set nocompatible
+filetype off
+
+"Vundle setup
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+"Let vundle manage vundle
+Bundle 'gmarik/vundle'
+
+"Bundles on github
+Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-powerline'
+
+filetype plugin indent on     " required!
+"
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install(update) bundles
+" :BundleSearch(!) foo - search(or refresh cache first) for foo
+" :BundleClean(!)      - confirm(or auto-approve) remova:l of unused bundles
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle command are not allowed..
