@@ -3,3 +3,6 @@ PS1="\[\033[0;37m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[0
 
 #Aliases
 alias ls="ls --color"
+
+#256 color!
+export TERM="xterm-256color"
