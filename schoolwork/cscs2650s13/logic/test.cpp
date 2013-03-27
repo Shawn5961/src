@@ -72,6 +72,17 @@ int main()
 	printf("MULTIPLEX| 1 | 0 | 0 | %c |\n", logicTester.MULTIPLEX('1', '0', '0'));
 	printf("MULTIPLEX| 0 | 0 | 0 | %c |\n", logicTester.MULTIPLEX('0', '0', '0'));
 
+	printf("\nDEMUX| a |in |out0 |out1 |\n");
+	printf("--------------------------\n");
+	logicTester.DEMUX('1', '1');
+	printf("DEMUX| 1 | 1 |  %c  |  %c  |\n", logicTester.getOut0(), logicTester.getOut1());
+	logicTester.DEMUX('1', '0');
+	printf("DEMUX| 1 | 0 |  %c  |  %c  |\n", logicTester.getOut0(), logicTester.getOut1());
+	logicTester.DEMUX('0', '1');
+	printf("DEMUX| 0 | 1 |  %c  |  %c  |\n", logicTester.getOut0(), logicTester.getOut1());
+	logicTester.DEMUX('0', '0');
+	printf("DEMUX| 0 | 0 |  %c  |  %c  |\n", logicTester.getOut0(), logicTester.getOut1());
+	
 	return 0;
 
 }

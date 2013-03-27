@@ -6,6 +6,7 @@ class Logic{
 	char in1, in2, in3, result, sum, carry;
 	char a, x0, x1, x; 
 	char s, r, q, qbar;
+	char out0, out1;
 public:
 	char AND(char, char);
 	char OR(char, char);
@@ -18,6 +19,9 @@ public:
 	char FULLSUM(char, char, char);
 	char FULLCARRY(char, char, char);
 	char MULTIPLEX(char, char, char);
+	char getOut0();
+	char getOut1();
+	void DEMUX(char, char);
 };
 
 char Logic::AND(char in1, char in2)
@@ -150,4 +154,20 @@ char Logic::MULTIPLEX(char a, char x0, char x1)
 	x = OR(AND(NOT(NOT(a)), x1), AND(NOT(a), x0));
 
 	return x;
+}
+
+char Logic::getOut0()
+{
+	return out0;
+}
+
+char Logic::getOut1()
+{
+	return out1;
+}
+	
+void Logic::DEMUX(char a, char in1)
+{
+	out0 = AND(NOT(a), in1);
+	out1 = AND(NOT(NOT(a)), in1);
 }
