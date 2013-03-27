@@ -3,7 +3,9 @@
 #define INVALID 'x' 
 
 class Logic{
-	char in1, in2, in3, result, sum, carry, s, r, q, qbar;
+	char in1, in2, in3, result, sum, carry;
+	char a, x0, x1, x; 
+	char s, r, q, qbar;
 public:
 	char AND(char, char);
 	char OR(char, char);
@@ -15,13 +17,11 @@ public:
 	char HALFCARRY(char, char);
 	char FULLSUM(char, char, char);
 	char FULLCARRY(char, char, char);
+	char MULTIPLEX(char, char, char);
 };
 
 char Logic::AND(char in1, char in2)
 {
-	this->in1 = in1;
-	this->in2 = in2;
-
 	if(in1 == TRUESTATE)
 	{
 		if (in2 == TRUESTATE)
@@ -51,9 +51,6 @@ char Logic::AND(char in1, char in2)
 
 char Logic::OR(char in1, char in2)
 {
-	this->in1 = in1;
-	this->in2 = in2;
-
 	if(in1 == TRUESTATE)
 	{
 		result = TRUESTATE;
@@ -101,14 +98,14 @@ char Logic::NOT(char in1)
 
 char Logic::NAND(char in1, char in2)
 {
-	result = NOT(AND(in1, in2);
+	result = NOT(AND(in1, in2));
 
 	return result;
 }
 
 char Logic::NOR(char in1, char in2)
 {
-	result = NOT(OR(in1, in2);
+	result = NOT(OR(in1, in2));
 
 	return result;
 }
@@ -146,4 +143,11 @@ char Logic::FULLCARRY(char in1, char in2, char in3)
 	carry = OR(AND(XOR(in1, in2), in3), AND(in1, in2));
 
 	return carry;
+}
+
+char Logic::MULTIPLEX(char a, char x0, char x1)
+{
+	x = OR(AND(NOT(NOT(a)), x1), AND(NOT(a), x0));
+
+	return x;
 }
