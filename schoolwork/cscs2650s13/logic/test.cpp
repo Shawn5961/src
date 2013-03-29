@@ -95,6 +95,11 @@ int main()
 	printf("RSNANDL| 1 | 1 | %c |  %c  |\n", logicTester.getQ(), logicTester.getQBar());
 	logicTester.NANDL('1', '0');
 	printf("RSNANDL| 1 | 0 | %c |  %c  |\n", logicTester.getQ(), logicTester.getQBar());
+	logicTester.NANDL('1', '1');
+	printf("RSNANDL| 1 | 1 | %c |  %c  |\n", logicTester.getQ(), logicTester.getQBar());
+	logicTester.NANDL('1', '0');
+	printf("RSNANDL| 1 | 0 | %c |  %c  |\n", logicTester.getQ(), logicTester.getQBar());
+
 	return 0;
 
 }
