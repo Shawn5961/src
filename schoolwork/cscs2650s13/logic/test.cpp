@@ -100,6 +100,23 @@ int main()
 	logicTester.NANDL('1', '0');
 	printf("RSNANDL| 1 | 0 | %c |  %c  |\n", logicTester.getQ(), logicTester.getQBar());
 
+	printf("\nRSNORL| s | r | q |qbar |\n");
+	printf("--------------------------\n");
+	logicTester.NORL('1', '1');
+	printf("RSNORL| 1 | 1 | %c |  %c  |\n", logicTester.getQ(), logicTester.getQBar());
+	logicTester.NORL('1', '0');
+	printf("RSNORL| 1 | 0 | %c |  %c  |\n", logicTester.getQ(), logicTester.getQBar());
+	logicTester.NORL('0', '1');
+	printf("RSNORL| 0 | 1 | %c |  %c  |\n", logicTester.getQ(), logicTester.getQBar());
+	logicTester.NORL('0', '0');
+	printf("RSNORL| 0 | 0 | %c |  %c  |\n", logicTester.getQ(), logicTester.getQBar());
+	logicTester.NORL('0', '1');
+	printf("RSNORL| 0 | 1 | %c |  %c  |\n", logicTester.getQ(), logicTester.getQBar());
+	logicTester.NORL('0', '0');
+	printf("RSNORL| 0 | 0 | %c |  %c  |\n", logicTester.getQ(), logicTester.getQBar());
+	logicTester.NORL('0', '1');
+	printf("RSNORL| 0 | 1 | %c |  %c  |\n", logicTester.getQ(), logicTester.getQBar());
+
 	return 0;
 
 }

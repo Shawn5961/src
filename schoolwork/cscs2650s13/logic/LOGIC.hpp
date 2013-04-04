@@ -25,6 +25,7 @@ public:
 	char getQBar();
 	void DEMUX(char, char);
 	void NANDL(char, char);
+	void NORL(char, char);
 };
 
 char Logic::AND(char in1, char in2)
@@ -204,5 +205,27 @@ void Logic::NANDL(char s, char r)
 	{
 		qbar = TRUESTATE;
 		q = NAND(s, qbar);
+	}
+}
+
+void Logic::NORL(char s, char r)
+{
+	if(s == TRUESTATE)
+	{
+		if(r == TRUESTATE)
+		{
+			q = INVALID;
+			qbar = INVALID;
+		}
+		else
+		{
+			q = TRUESTATE;
+			qbar = NOR(r, q);
+		}
+	}
+	else if(r == TRUESTATE)
+	{
+		qbar = TRUESTATE;
+		q = NOR(s, qbar);
 	}
 }
