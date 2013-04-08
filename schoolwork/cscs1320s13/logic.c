@@ -129,7 +129,10 @@ char FULLCARRY(char input1, char input2, char input3)
 	return carry;
 }
 
-
+//addBinary
+//stringToArray
+//arrayToString
+//latch
 
 int main()
 {
