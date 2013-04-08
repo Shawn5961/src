@@ -1,12 +1,18 @@
+#include <stdlib.h>
+#include <time.h>
+
 #define TRUESTATE '1'
 #define FALSESTATE '0'
 #define INVALID 'x' 
+
 
 class Logic{
 	char in1, in2, in3, result, sum, carry;
 	char a, x0, x1, x; 
 	char s, r, q, qbar;
 	char out0, out1;
+	char clk;
+	int clkGen;
 public:
 	char AND(char, char);
 	char OR(char, char);
@@ -26,6 +32,8 @@ public:
 	void DEMUX(char, char);
 	void NANDL(char, char);
 	void NORL(char, char);
+	char CLOCK();
+	void CLOCKRS(char, char);
 };
 
 char Logic::AND(char in1, char in2)
@@ -229,3 +237,24 @@ void Logic::NORL(char s, char r)
 		q = NOR(s, qbar);
 	}
 }
+
+char Logic::CLOCK()
+{
+	clkGen = (rand () % 2);
+
+	if(clkGen == 0)
+	{
+		clk = FALSESTATE;
+	}
+	else if(clkGen == 1)
+	{
+		clk = TRUESTATE;
+	}
+	else
+	{
+		clk = INVALID;
+	}
+
+	return clk;
+}
+

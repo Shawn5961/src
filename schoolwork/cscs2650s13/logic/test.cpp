@@ -4,6 +4,7 @@
 int main()
 {
 	Logic logicTester;
+	srand(time(NULL));
 
 	printf("1 AND 1: %c\n", logicTester.AND('1', '1'));
 	printf("1 AND 0: %c\n", logicTester.AND('1', '0'));
@@ -116,6 +117,14 @@ int main()
 	printf("RSNORL| 0 | 0 | %c |  %c  |\n", logicTester.getQ(), logicTester.getQBar());
 	logicTester.NORL('0', '1');
 	printf("RSNORL| 0 | 1 | %c |  %c  |\n", logicTester.getQ(), logicTester.getQBar());
+
+	printf("\nRandom Clock tests:\n");
+	printf("Result 1: %c\n", logicTester.CLOCK());
+	printf("Result 2: %c\n", logicTester.CLOCK());
+	printf("Result 3: %c\n", logicTester.CLOCK());
+	printf("Result 4: %c\n", logicTester.CLOCK());
+	printf("Result 5: %c\n", logicTester.CLOCK());
+	printf("Result 6: %c\n", logicTester.CLOCK());
 
 	return 0;
 
