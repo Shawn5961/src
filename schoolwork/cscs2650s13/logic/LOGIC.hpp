@@ -33,7 +33,8 @@ public:
 	void NANDL(char, char);
 	void NORL(char, char);
 	char CLOCK();
-	void CLOCKRS(char, char);
+	char getCLOCK();
+	void CLOCKRSNAND(char, char, char);
 };
 
 char Logic::AND(char in1, char in2)
@@ -258,3 +259,32 @@ char Logic::CLOCK()
 	return clk;
 }
 
+char Logic::getCLOCK()
+{
+	return clk;
+}
+
+void Logic::CLOCKRSNAND(char s, char r, char clock)
+{
+	s = NAND(s, clock);
+	r = NAND(r, clock);
+
+	if(s == FALSESTATE)
+	{
+		if(r == FALSESTATE)
+		{
+			q = INVALID;
+			qbar = INVALID;
+		}
+		else
+		{
+			q = TRUESTATE;
+			qbar = NAND(r, q);
+		}
+	}
+	else if(r == FALSESTATE)
+	{
+		qbar = TRUESTATE;
+		q = NAND(s, qbar);
+	}
+}
