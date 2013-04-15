@@ -3,9 +3,11 @@
 
 int main(int argc, char *argv[])
 {
-	char *fileToOpen = argv[1];
-	char buffer[256];
-	FILE *fileToEdit;
+	char character[80];
+	FILE *file = fopen(argv[1], "r");
+	int c;
+	int i = 0;
+
 
 	if (argc != 2)
 	{
@@ -13,14 +15,24 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		fileToEdit = fopen(fileToOpen, "r");
+		character[i] = fgetc(file);
+		do
+		{
+			if(character[i] == '\n' || character[i] == ' ')
+			{	
+				printf("%x\n", character[i]);
+				i++;
+				character[i] = fgetc(file);
+			}
+			else
+			{
+				printf("%x ", character[i]);
+				i++;
+				character[i] = fgetc(file);
+			}
+		} while(character[i] != EOF);
 
-		printf("fileToOpen = %s\n", fileToOpen);
-		
-		while(fgets(buffer,256, fileToEdit) != NULL)
-			printf("%s", buffer);
-
-		fclose(fileToEdit);
+		fclose(file);
 
 		return 0;
 	}
