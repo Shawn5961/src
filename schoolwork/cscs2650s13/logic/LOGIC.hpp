@@ -201,8 +201,8 @@ void Logic::NANDL(char s, char r)
 	{
 		if(r == FALSESTATE)
 		{
-			q = INVALID;
-			qbar = INVALID;
+			q = TRUESTATE;
+			qbar = TRUESTATE;
 		}
 		else
 		{
@@ -223,8 +223,8 @@ void Logic::NORL(char s, char r)
 	{
 		if(r == TRUESTATE)
 		{
-			q = INVALID;
-			qbar = INVALID;
+			q = FALSESTATE;
+			qbar = FALSESTATE;
 		}
 		else
 		{
@@ -269,22 +269,5 @@ void Logic::CLOCKRSNAND(char s, char r, char clock)
 	s = NAND(s, clock);
 	r = NAND(r, clock);
 
-	if(s == FALSESTATE)
-	{
-		if(r == FALSESTATE)
-		{
-			q = INVALID;
-			qbar = INVALID;
-		}
-		else
-		{
-			q = TRUESTATE;
-			qbar = NAND(r, q);
-		}
-	}
-	else if(r == FALSESTATE)
-	{
-		qbar = TRUESTATE;
-		q = NAND(s, qbar);
-	}
+	NANDL(s, r);
 }
