@@ -35,6 +35,7 @@ public:
 	char CLOCK();
 	char getCLOCK();
 	void CLOCKRSNAND(char, char, char);
+	void EDGEFLIPFLOP(char, char, char);
 };
 
 char Logic::AND(char in1, char in2)
@@ -270,4 +271,10 @@ void Logic::CLOCKRSNAND(char s, char r, char clock)
 	r = NAND(r, clock);
 
 	NANDL(s, r);
+}
+
+void Logic::EDGEFLIPFLOP(char s, char r, char clock)
+{
+	CLOCKRSNAND(s, r, clock);
+	CLOCKRSNAND(getQ(), getQBar(), NOT(clock));
 }

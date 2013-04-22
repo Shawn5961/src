@@ -147,6 +147,23 @@ int main()
 	logicTester.CLOCKRSNAND('1', '0', logicTester.CLOCK());
 	printf("CLOCKRSNAND| 1 | 0 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
 
+	printf("\nEDGEFLIPFLOP| s | r |clock| q |qbar |\n");
+	printf("------------------------------------\n");
+	logicTester.EDGEFLIPFLOP('0', '0', logicTester.CLOCK());
+	printf("EDGEFLIPFLOP| 0 | 0 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
+	logicTester.EDGEFLIPFLOP('0', '1', logicTester.CLOCK());
+	printf("EDGEFLIPFLOP| 0 | 1 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
+	logicTester.EDGEFLIPFLOP('1', '0', logicTester.CLOCK());
+	printf("EDGEFLIPFLOP| 1 | 0 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
+	logicTester.EDGEFLIPFLOP('1', '1', logicTester.CLOCK());
+	printf("EDGEFLIPFLOP| 1 | 1 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
+	logicTester.EDGEFLIPFLOP('1', '0', logicTester.CLOCK());
+	printf("EDGEFLIPFLOP| 1 | 0 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
+	logicTester.EDGEFLIPFLOP('1', '1', logicTester.CLOCK());
+	printf("EDGEFLIPFLOP| 1 | 1 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
+	logicTester.EDGEFLIPFLOP('1', '0', logicTester.CLOCK());
+	printf("EDGEFLIPFLOP| 1 | 0 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
+
 	return 0;
 
 }
