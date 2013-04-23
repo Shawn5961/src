@@ -51,18 +51,14 @@ int main(int argc, char **argv)
 			}
 		}
 
-		else if(value == 'd')
+		else if(value == 'd' || value == 't')
 		{
-			if ((*(*(argv+1)+(i+1))) == 'g')
+			if (value == 'd' && (*(*(argv+1)+(i+1))) == 'g')
 			{
 				fprintf(stdout, "6");
 				i++;
 			}
-		}
-
-		else if(value == 't')
-		{
-			if ((*(*(argv+1)+(i+1))) == 'c')
+			else if (value == 't' && (*(*(argv+1)+(i+1))) == 'c')
 			{
 				if ((*(*(argv+1)+(i+2))) == 'h')
 				{
@@ -71,7 +67,9 @@ int main(int argc, char **argv)
 				}
 			}
 			else
+			{
 				fprintf(stdout, "1");
+			}
 		}
 
 		else if(value == 'n')
