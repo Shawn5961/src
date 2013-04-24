@@ -37,6 +37,27 @@ void dirt :: init(int level)
 			}
 		}
 	}
+	else if(level == 1)
+	{
+		for(int y = 0; y < 30; y ++)
+		{
+			for(int x = 0; x < 18; x++)
+			{
+				if(( y == 2 || y== 17) && (x == 12 || x == 5 || x == 14 || x == 7 || x == 19 || x == 15))
+				{
+					grid[x][y] = 0;
+				}
+				else if(x == 7 && y >= 4 &&y <= 14)
+				{
+					grid[x][y] = 0;
+				}
+				else
+				{	
+					grid[x][y] = (y + (level + 4)) / 3;
+				}
+			}
+		}
+	}
 }
 
 void dirt :: clear()

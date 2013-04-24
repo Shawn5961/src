@@ -152,7 +152,7 @@ int main(int argc, char* args[])
 	int x = 0, y = 0;
 	int ex = 196, ey = 572;
 	bool quit = false;
-	field.init(0);
+	field.init(1);
 
 	if (init() == false)
 	{
