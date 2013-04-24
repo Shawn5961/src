@@ -12,4 +12,8 @@ int main()
 	printf("%p\n", name1);
 	printf("%p\n", name2);
 	printf("%p\n", name3);
+
+	name1 = &*(name3+32-18);
+
+	printf("%c\n", *name1);
 }
