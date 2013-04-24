@@ -198,15 +198,15 @@ int main(int argc, char* args[])
 						break;
 
 					case SDLK_DOWN:
-						// Your code here
+						y = y + 32;
 						break;
 
 					case SDLK_LEFT:
-						// Your code here
+						x = x - 32;
 						break;
 
 					case SDLK_RIGHT:
-						// Your code here
+						x = x + 32;
 						break;
 
 					case SDLK_ESCAPE:
