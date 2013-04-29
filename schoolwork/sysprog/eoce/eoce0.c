@@ -69,15 +69,15 @@ int main(int argc, char **argv)
 		exit(1);
 	}
 
-	for(i = 1; i < numArgs; i++)
+	for(i = 0; i < numArgs; i++)
 	{
 		local.value = number[i];
-		pthread_create(&threads[i-1], NULL, (void *) process, (void *) &local);
+		pthread_create(&threads[i], NULL, (void *) process, (void *) &local);
 		usleep(32);
 	}
 
-	for(i = 1; i < numArgs; i++)
-		pthread_join(threads[i-1], NULL);
+	for(i = 0; i < numArgs; i++)
+		pthread_join(threads[i], NULL);
 
 	fprintf(fPtr, "\n");
 	fclose(fPtr);
@@ -90,6 +90,6 @@ void *process(void *foreign)
 	struct localinfo *thing = foreign;
 	unsigned char data = thing -> value;
 	sleep((int)(data & 0xFF));
-	fprintf(fPtr, "%hhu ", data);
+	fprintf(stdout, "%hhu ", data);
 	fflush(stdout);
 }
