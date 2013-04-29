@@ -164,6 +164,9 @@ int main()
 	logicTester.EDGEFLIPFLOP('1', '0', logicTester.CLOCK());
 	printf("EDGEFLIPFLOP| 1 | 0 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
 
+	printf("\nVAND\n");
+	printf("1, 1, 1: %c\n", logicTester.VAND(3, '1', '1', '1'));
+	printf("1, 0, 1: %c\n", logicTester.VAND(3, '1', '0', '1'));
 	return 0;
 
 }

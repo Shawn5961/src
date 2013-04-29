@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdarg.h>
 #include <time.h>
 
 #define TRUESTATE '1'
@@ -25,6 +26,7 @@ public:
 	char FULLSUM(char, char, char);
 	char FULLCARRY(char, char, char);
 	char MULTIPLEX(char, char, char);
+	char VAND(int, ...);
 	char getOut0();
 	char getOut1();
 	char getQ();
@@ -36,6 +38,7 @@ public:
 	char getCLOCK();
 	void CLOCKRSNAND(char, char, char);
 	void EDGEFLIPFLOP(char, char, char);
+	void JKFLIPFLOP(char, char, char);
 };
 
 char Logic::AND(char in1, char in2)
@@ -170,6 +173,31 @@ char Logic::MULTIPLEX(char a, char x0, char x1)
 	return x;
 }
 
+char Logic::VAND(int numArgs, ...)
+{
+	va_list args;
+	va_start(args, numArgs);
+	
+	char arg, result;
+	int i;
+	for(i = numArgs; i > 0; i--)
+	{
+		arg = va_arg(args, int);
+		if(i == numArgs)
+		{
+			result = arg;
+		}
+		else
+		{
+			result = AND(result, arg);
+		}
+	}
+
+	va_end(args);
+
+	return result;
+}
+
 char Logic::getOut0()
 {
 	return out0;
@@ -276,5 +304,11 @@ void Logic::CLOCKRSNAND(char s, char r, char clock)
 void Logic::EDGEFLIPFLOP(char s, char r, char clock)
 {
 	CLOCKRSNAND(s, r, clock);
+	CLOCKRSNAND(getQ(), getQBar(), NOT(clock));
+}
+
+void Logic::JKFLIPFLOP(char j, char k, char clock)
+{
+	VAND	
 	CLOCKRSNAND(getQ(), getQBar(), NOT(clock));
 }
