@@ -13,6 +13,7 @@ class Logic{
 	char s, r, q, qbar;
 	char out0, out1;
 	char clk;
+	char tmp1, tmp2;
 	int clkGen;
 public:
 	char AND(char, char);
@@ -39,6 +40,7 @@ public:
 	void CLOCKRSNAND(char, char, char);
 	void EDGEFLIPFLOP(char, char, char);
 	void JKFLIPFLOP(char, char, char);
+	void DLATCH(char, char);
 };
 
 char Logic::AND(char in1, char in2)
@@ -309,6 +311,16 @@ void Logic::EDGEFLIPFLOP(char s, char r, char clock)
 
 void Logic::JKFLIPFLOP(char j, char k, char clock)
 {
-	VAND	
+	tmp1 = NOT(VAND(3, j, clock, getQBar()));
+	tmp2 = NOT(VAND(3, k, clock, getQ()));
+	NANDL(tmp1, tmp2);
 	CLOCKRSNAND(getQ(), getQBar(), NOT(clock));
+}
+
+void Logic::DLATCH(char d, char clock)
+{
+	tmp1 = NAND(d, clock);
+	tmp2 = NAND(NOT(tmp1), clock);
+
+	NANDL(tmp1, tmp2);
 }

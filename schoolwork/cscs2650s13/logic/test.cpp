@@ -167,6 +167,39 @@ int main()
 	printf("\nVAND\n");
 	printf("1, 1, 1: %c\n", logicTester.VAND(3, '1', '1', '1'));
 	printf("1, 0, 1: %c\n", logicTester.VAND(3, '1', '0', '1'));
+
+	printf("\nJKFLIPFLOP| s | r |clock| q |qbar |\n");
+	printf("------------------------------------\n");
+	logicTester.JKFLIPFLOP('0', '0', logicTester.CLOCK());
+	printf("JKFLIPFLOP| 0 | 0 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
+	logicTester.JKFLIPFLOP('0', '1', logicTester.CLOCK());
+	printf("JKFLIPFLOP| 0 | 1 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
+	logicTester.JKFLIPFLOP('1', '0', logicTester.CLOCK());
+	printf("JKFLIPFLOP| 1 | 0 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
+	logicTester.JKFLIPFLOP('1', '1', logicTester.CLOCK());
+	printf("JKFLIPFLOP| 1 | 1 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
+	logicTester.JKFLIPFLOP('1', '0', logicTester.CLOCK());
+	printf("JKFLIPFLOP| 1 | 0 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
+	logicTester.JKFLIPFLOP('1', '1', logicTester.CLOCK());
+	printf("JKFLIPFLOP| 1 | 1 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
+	logicTester.JKFLIPFLOP('1', '0', logicTester.CLOCK());
+	printf("JKFLIPFLOP| 1 | 0 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
+
+	printf("\nDLATCH| d |clock| q |qbar |\n");
+	printf("---------------------------\n");
+	logicTester.DLATCH('0', logicTester.CLOCK());
+	printf("DLATCH| 0 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
+	logicTester.DLATCH('1', logicTester.CLOCK());
+	printf("DLATCH| 1 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
+	logicTester.DLATCH('0', logicTester.CLOCK());
+	printf("DLATCH| 0 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
+	logicTester.DLATCH('1', logicTester.CLOCK());
+	printf("DLATCH| 1 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
+	logicTester.DLATCH('0', logicTester.CLOCK());
+	printf("DLATCH| 0 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
+	logicTester.DLATCH('1', logicTester.CLOCK());
+	printf("DLATCH| 1 |  %c  | %c |  %c  |\n", logicTester.getCLOCK(), logicTester.getQ(), logicTester.getQBar());
+
 	return 0;
 
 }
