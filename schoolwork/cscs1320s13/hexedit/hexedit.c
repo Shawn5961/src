@@ -11,12 +11,14 @@ int filePosInt;
 void printBuffer()
 {
 //	buffer[i] = fgetc(file);
-//	if(buffer[i] != EOF)
-//	{
+	if((buffer[i] = fgetc(file)) != EOF)
+	{
 		printf("     00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15\n");
 		printf("%03d0 ", lineNum);
+		fseek(file, -1, SEEK_CUR);
 		do
 		{
+			buffer[i] = fgetc(file);
 			if((i % 16) == 15)
 			{	
 				lineNum++;
@@ -28,23 +30,21 @@ void printBuffer()
 				{
 					printf("%02x\n", buffer[i]);
 				}
-				buffer[i] = fgetc(file);
 				i++;
 			}
 			else
 			{
 				printf("%02x ", buffer[i]);
-				buffer[i] = fgetc(file);
 				i++;
 			}
 		} while(buffer[i] != EOF && i < 256);
 		i = 0;
 		lineNum = 0;
-//	}
-//	else
-//	{
-//		printf("You have reached the end of the file\n");
-//	}
+	}
+	else
+	{
+		printf("You have reached the end of the file\n");
+	}
 }
 
 int main(int argc, char *argv[])
@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		while(charCounter != EOF)
+/*		while(charCounter != EOF)
 		{
 			numChars++;
 			charCounter = fgetc(file);
@@ -71,36 +71,43 @@ int main(int argc, char *argv[])
 		printf("Number of characters in file: %d\n", numChars);
 		
 		rewind(file);
-		
+
+		printBuffer();
+*/
 		do
 		{
 			printf("\nEnter a command.\n");
 			printf("1: Display current buffer\n");
 			printf("2: Display next buffer\n");
 			printf("3: Display previous buffer\n");
-			printf("4: Quit\n");
+			printf("4: Display start of file\n");
+			printf("5: Quit\n");
 			scanf("%d", &option);
 			
 			switch (option)
 			{
 				case 1:
-					fseek(file, -257, SEEK_CUR);
+					fseek(file, -256, SEEK_CUR);
 					printBuffer();
 					break;
 				case 2:
 					printBuffer();
 					break;
 				case 3:
-					fseek(file, -513, SEEK_CUR);
+					fseek(file, -512, SEEK_CUR);
 					printBuffer();
 					break;
 				case 4:
+					rewind(file);
+					printBuffer();
+					break;
+				case 5:
 					break;
 				default:
 					printf("Invalid option. Please enter a valid option\n");
 					break;
 			}
-		} while(option != 4);
+		} while(option != 5);
 	}
 	fclose(file);
 
