@@ -16,6 +16,7 @@ struct localinfo {
 
 FILE *fPtr;
 FILE *inFile;
+FILE *sortFile;
 
 int main(int argc, char **argv)
 {
@@ -33,7 +34,7 @@ int main(int argc, char **argv)
 	inFile = fopen(argv[1], "r");
 
 	//Set required variables for counting number of args, setting args
-	int num = 0, numArgs = 0;
+	int num, numArgs = 0;
 	int k;
 
 	//Count number of integers in file
@@ -82,14 +83,49 @@ int main(int argc, char **argv)
 	fprintf(fPtr, "\n");
 	fclose(fPtr);
 
+	sortFile = fopen("datafile", "r");
+	
+	numArgs = 0;
+	
+	//Count number of integers in file
+	fscanf(sortFile, "%d", &num);
+	while(!feof(sortFile))
+	{
+		fscanf(sortFile, "%d", &num);
+		numArgs++;
+	}
+
+	//Create an int array the size of number of ints in file
+	int reverseSort[numArgs];
+
+	//Set file pointer back to start
+	rewind(sortFile);
+
+	//Read integers from file
+
+	//Read integers from sorted file
+	fscanf(sortFile, "%d", &num);
+	for(k = 0; k < numArgs; k++)
+	{
+		reverseSort[k] = num;
+		fscanf(sortFile, "%d", &num);
+	}
+
+	for(k = (numArgs - 1); k >= 0; k--)
+		printf("%d ", reverseSort[k]);
+
+	printf("\n");
+
+	fclose(sortFile);
+
 	return(0);
 }
 
 void *process(void *foreign)
 {
 	struct localinfo *thing = foreign;
-	unsigned char data = thing -> value;
+	int data = thing -> value;
 	sleep((int)(data & 0xFF));
-	fprintf(stdout, "%hhu ", data);
+	fprintf(fPtr, "%d ", data);
 	fflush(stdout);
 }

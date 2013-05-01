@@ -41,6 +41,7 @@ public:
 	void EDGEFLIPFLOP(char, char, char);
 	void JKFLIPFLOP(char, char, char);
 	void DLATCH(char, char);
+	void DFLIPFLOP(char, char);
 };
 
 char Logic::AND(char in1, char in2)
@@ -226,7 +227,7 @@ void Logic::DEMUX(char a, char in1)
 	out1 = AND(NOT(NOT(a)), in1);
 }
 
-void Logic::NANDL(char s, char r)
+void Logic::NANDL(char r, char s)
 {
 	if(s == FALSESTATE)
 	{
@@ -248,7 +249,7 @@ void Logic::NANDL(char s, char r)
 	}
 }
 
-void Logic::NORL(char s, char r)
+void Logic::NORL(char r, char s)
 {
 	if(s == TRUESTATE)
 	{
@@ -295,6 +296,7 @@ char Logic::getCLOCK()
 	return clk;
 }
 
+//Fix stuff below here.
 void Logic::CLOCKRSNAND(char s, char r, char clock)
 {
 	s = NAND(s, clock);
@@ -323,4 +325,10 @@ void Logic::DLATCH(char d, char clock)
 	tmp2 = NAND(NOT(tmp1), clock);
 
 	NANDL(tmp1, tmp2);
+}
+
+void Logic::DFLIPFLOP(char d, char clock)
+{
+	DLATCH(d, clock);
+	CLOCKRSNAND(getQ(), getQBar(), NOT(clock));
 }
