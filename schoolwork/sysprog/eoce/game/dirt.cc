@@ -52,8 +52,15 @@ void dirt :: clear()
 
 void dirt :: dig(int x, int y)
 {
-	if(grid[x][y] != 0)
+	if(grid[x][y] != 0 && y > 2)
+	{
 		grid[x][y] = 0;
+		digFlag = 1;
+	}
+	else
+	{
+		digFlag = 0;
+	}
 }
 
 void dirt :: set(int x, int y, int value)

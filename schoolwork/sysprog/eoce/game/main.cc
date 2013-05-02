@@ -1,9 +1,12 @@
 #include <string>
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
+#include <SDL/SDL_ttf.h>
 #include "dirt.h"
 #include "dirt.cc"
 #include <sstream>
+#include <time.h>
+#include <iostream>
 
 const int SCREEN_WIDTH      = 576;
 const int SCREEN_HEIGHT     = 960;
@@ -15,11 +18,15 @@ SDL_Surface *background     = NULL;
 SDL_Surface *screen         = NULL;
 SDL_Surface *bob            = NULL;
 SDL_Surface *enemy          = NULL;
+SDL_Surface *scoremessage	= NULL;
 dirt field;
 
 SDL_Rect clip[4];
 
 SDL_Event event;
+
+TTF_Font *font = NULL;
+SDL_Color textColor = {0, 0, 0};
 
 SDL_Surface *load_image(std::string filename)
 {
@@ -82,6 +89,11 @@ bool init()
 		return false;
 	}
 
+	if(TTF_Init() == -1)
+	{
+		return false;
+	}
+
 	//Sets the window caption
 	SDL_WM_SetCaption("Game", NULL);
 
@@ -90,10 +102,11 @@ bool init()
 
 bool load_files()
 {
-	image      = load_image("images/dirt.bmp");
-	background = load_image("images/background.bmp");
-	bob        = load_image("images/spritesheet.png");
-	enemy      = load_image("images/enemy.png");
+	image      	= load_image("images/dirt.bmp");
+	background 	= load_image("images/background.bmp");
+	bob        	= load_image("images/spritesheet.png");
+	enemy      	= load_image("images/enemy.png");
+	font		= TTF_OpenFont("lazy.ttf", 24);
 
 	if (image == NULL)
 	{
@@ -111,6 +124,10 @@ bool load_files()
 	{
 		return (false);
 	}
+	if(font == NULL)
+	{
+		return (false);
+	}
 	return (true);
 }
 
@@ -122,6 +139,8 @@ void clean_up()
 	SDL_FreeSurface(bob);
 	SDL_FreeSurface(enemy);
 
+	TTF_CloseFont(font);
+	TTF_Quit();
 	SDL_Quit();
 }
 
@@ -149,18 +168,25 @@ int main(int argc, char* args[])
 	bool cap = true;
 
 	int dead = 0;
+	int score = 0;
+	int oldScore = score;
 	int f = 0;
 	int x = 0, y = 0;
-	int ex = 196, ey = 572;
+	int ex = 320, ey = 320;
 	bool quit = false;
 	field.init(0);
+
+	int enemyMoveCheck, enemyMoveDirection;
+	srand(time(NULL));
 
 	if (init() == false)
 	{
 		return(1);
 	}
 
-	load_files();
+	if(!load_files())
+		printf("wtfmate\n");
+
 
 	//this is sprite number 1
 	clip[0].x = 1;
@@ -224,6 +250,16 @@ int main(int argc, char* args[])
 						cap = (!cap);
 						break;
 
+					case SDLK_SPACE:
+						if(dead == 1)
+							dead = 0;
+						break;
+
+					case SDLK_r:
+						printf("%d, %d\n", x, y);
+						printf("%d, %d\n", ex, ey);
+						break;
+
 					default:
 						break;
 				}
@@ -233,8 +269,21 @@ int main(int argc, char* args[])
 				quit = true;
 			}
 		}
+		
 
 		apply_surface(0, 0, background, screen);
+		std::stringstream scorestream;
+
+		scorestream << "Score: " << score;
+		scoremessage = TTF_RenderText_Solid(font, scorestream.str().c_str(), textColor);
+
+		if(scoremessage == NULL)
+		{
+			return 1;
+		}
+
+		apply_surface(0, 0, scoremessage, screen);
+		SDL_FreeSurface(scoremessage);
 		applydirt();
 
 		if((f > 2) && (dead != 1))
@@ -267,44 +316,99 @@ int main(int argc, char* args[])
 			y = 928;
 		}
 
-		if(y < 60)
+		if(y < 64)
 		{
-			y = 60;
+			y = 64;
 		}
 
-		if(y >= 64 && y < 96)
-			field.dig((x/31), (y/30));
-		else
-			field.dig((x/32), (y/31));
+		field.dig((x/32), (y/32));
 
-		if((x >= ex - 32) && (x <= ex) && (y == ey))
+		if(field.digFlag == 1)
 		{
-			x = ex - 32;
+			score += 100;
+		}
+
+/*		if((x >= ex - 32) && (x <= ex) && (y == ey))
+		{
 			dead = 1;
+			score -= 1000;
 		}
 
 		if((x <= ex + 32) && (x > ex) && (y == ey))
 		{
-			x = ex + 32;
 			dead = 1;
+			score -= 1000;
 		}
 
 		if((y == ey - 32) && (x == ex))
 		{
-			y = ey - 32;
 			dead = 1;
+			score -= 1000;
 		}
 
 		if((y == ey + 32) && (x == ex))
 		{
-			y = ey + 32;
 			dead = 1;
+			score -= 1000;
 		}
+*/
+		if((y == ey) && (x == ex))
+		{
+			dead = 1;
+			score -= 1000;
+		}
+
+		enemyMoveCheck = rand() % 25 + 1;
+		if(enemyMoveCheck == 1)
+		{
+			enemyMoveDirection = rand() % 4 + 1;
+			switch (enemyMoveDirection)
+			{
+				case 1:
+					if(field.get((ex + 32) / 32, ey / 32) == 0)
+						ex = ex + 32;
+						break;
+
+				case 2:
+					if(field.get((ex - 32) / 32, ey / 32) == 0)
+						ex = ex - 32;
+						break;
+
+				case 3:
+					if(field.get(ex / 32, (ey + 32) / 32) == 0)
+						ey = ey + 32;
+						break;
+
+				case 4:
+					if(field.get(ex / 32, (ey - 32) / 32) == 0)
+						ey = ey - 32;
+						break;
+			}
+		}
+
 
 		if(dead == 1)
 		{
 			f = 3;
 			y = y - 32;
+		}
+
+		if(score != oldScore)
+		{
+			std::stringstream scorestream;
+
+			scorestream << "Score: " << score;
+			scoremessage = TTF_RenderText_Solid(font, scorestream.str().c_str(), textColor);
+
+			if(scoremessage == NULL)
+			{
+				return 1;
+			}
+
+			apply_surface(0, 0, scoremessage, screen);
+			SDL_FreeSurface(scoremessage);
+
+			oldScore = score;
 		}
 
 		apply_surface(x, y, bob, screen, &clip[f]);
@@ -315,12 +419,12 @@ int main(int argc, char* args[])
 			return(1);
 		}
 
-		frame++;
+/*		frame++;
 		if(update > 1000)
 		{
 			std::stringstream caption;
 			caption<<"average trames per second:"<<frame / (SDL_GetTicks()/1000.f);
-		}
+		}*/
 	}
 
 	clean_up();

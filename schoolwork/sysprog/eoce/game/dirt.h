@@ -6,6 +6,7 @@
 class dirt 
 {
 	public:
+		int digFlag;
 		dirt();
 		void init(int);
 		void clear();
