@@ -194,9 +194,11 @@ int applydirt()
 	return(0);
 }
 
-void musicFunction()
+int musicFunction(void *unused)
 {
 	Mix_PlayMusic(music, -1);
+
+	return 0;
 }
 
 int main(int argc, char* args[])
