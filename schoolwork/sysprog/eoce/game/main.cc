@@ -215,7 +215,7 @@ int main(int argc, char* args[])
 	field.init(0);
 
 	SDL_Thread *musicThread;
-	thread = SDL_CreateThread(musicFunction, NULL);
+	musicThread = SDL_CreateThread(musicFunction, NULL);
 
 	int enemyMoveCheck, enemyMoveDirection;
 	srand(time(NULL));
