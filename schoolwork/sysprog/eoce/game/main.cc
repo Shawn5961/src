@@ -198,6 +198,7 @@ int musicFunction(void *unused)
 {
 	Mix_PlayMusic(music, -1);
 
+	printf("Music thread debug\n");
 	return 0;
 }
 
