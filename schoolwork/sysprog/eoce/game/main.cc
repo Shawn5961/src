@@ -217,8 +217,6 @@ int main(int argc, char* args[])
 	bool quit = false;
 	field.init(0);
 
-	SDL_Thread *musicThread;
-	musicThread = SDL_CreateThread(musicFunction, NULL);
 
 	int enemyMoveCheck, enemyMoveDirection;
 	srand(time(NULL));
@@ -259,6 +257,8 @@ int main(int argc, char* args[])
 		update = SDL_GetTicks();
 		if(SDL_PollEvent(&event))
 		{
+		SDL_Thread *musicThread;
+		musicThread = SDL_CreateThread(musicFunction, NULL);
 			if(event.type == SDL_KEYDOWN)
 			{
 				switch(event.key.keysym.sym)
