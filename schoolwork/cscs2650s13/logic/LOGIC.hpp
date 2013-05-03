@@ -2,8 +2,8 @@
 #include <stdarg.h>
 #include <time.h>
 
-#define TRUESTATE '1'
-#define FALSESTATE '0'
+#define TRUESTATE '+'
+#define FALSESTATE '-'
 #define INVALID 'x' 
 
 
@@ -227,7 +227,7 @@ void Logic::DEMUX(char a, char in1)
 	out1 = AND(NOT(NOT(a)), in1);
 }
 
-void Logic::NANDL(char r, char s)
+void Logic::NANDL(char s, char r)
 {
 	if(s == FALSESTATE)
 	{
@@ -249,7 +249,7 @@ void Logic::NANDL(char r, char s)
 	}
 }
 
-void Logic::NORL(char r, char s)
+void Logic::NORL(char s, char r)
 {
 	if(s == TRUESTATE)
 	{
