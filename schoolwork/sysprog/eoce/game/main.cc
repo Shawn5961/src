@@ -3,6 +3,7 @@
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_ttf.h>
 #include <SDL/SDL_mixer.h>
+#include <SDL/SDL_thread.h>
 #include "dirt.h"
 #include "dirt.cc"
 #include <sstream>
@@ -193,6 +194,11 @@ int applydirt()
 	return(0);
 }
 
+void musicFunction()
+{
+	Mix_PlayMusic(music, -1);
+}
+
 int main(int argc, char* args[])
 {
 	int update;
@@ -207,6 +213,9 @@ int main(int argc, char* args[])
 	int ex = 320, ey = 320;
 	bool quit = false;
 	field.init(0);
+
+	SDL_Thread *musicThread;
+	thread = SDL_CreateThread(musicFunction, NULL);
 
 	int enemyMoveCheck, enemyMoveDirection;
 	srand(time(NULL));
@@ -242,7 +251,6 @@ int main(int argc, char* args[])
 	clip[3].h = 34;
 
 
-	Mix_PlayMusic(music, -1);
 	while(quit == false)
 	{
 		update = SDL_GetTicks();
@@ -460,6 +468,8 @@ int main(int argc, char* args[])
 			caption<<"average trames per second:"<<frame / (SDL_GetTicks()/1000.f);
 		}*/
 	}
+
+	SDL_WaitThread(musicThread, NULL);
 
 	clean_up();
 
