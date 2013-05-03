@@ -2,6 +2,7 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_ttf.h>
+#include <SDL/SDL_mixer.h>
 #include "dirt.h"
 #include "dirt.cc"
 #include <sstream>
@@ -19,6 +20,11 @@ SDL_Surface *screen         = NULL;
 SDL_Surface *bob            = NULL;
 SDL_Surface *enemy          = NULL;
 SDL_Surface *scoremessage	= NULL;
+
+Mix_Music *music			= NULL;
+
+Mix_Chunk *digSound			= NULL;
+
 dirt field;
 
 SDL_Rect clip[4];
@@ -94,6 +100,11 @@ bool init()
 		return false;
 	}
 
+	if(Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1)
+	{
+		return false;
+	}
+
 	//Sets the window caption
 	SDL_WM_SetCaption("Game", NULL);
 
@@ -107,6 +118,7 @@ bool load_files()
 	bob        	= load_image("images/spritesheet.png");
 	enemy      	= load_image("images/enemy.png");
 	font		= TTF_OpenFont("lazy.ttf", 24);
+
 
 	if (image == NULL)
 	{
@@ -128,6 +140,20 @@ bool load_files()
 	{
 		return (false);
 	}
+
+	music = Mix_LoadMUS("sound/theme.wav");
+
+	if(music == NULL)
+	{
+		return false;
+	}
+
+	digSound = Mix_LoadWAV("sound/dig.wav");
+
+	if(digSound == NULL)
+	{
+		return false;
+	}
 	return (true);
 }
 
@@ -138,6 +164,12 @@ void clean_up()
 	SDL_FreeSurface(screen);
 	SDL_FreeSurface(bob);
 	SDL_FreeSurface(enemy);
+
+	Mix_FreeChunk(digSound);
+
+	Mix_FreeMusic(music);
+
+	Mix_CloseAudio();
 
 	TTF_CloseFont(font);
 	TTF_Quit();
@@ -210,6 +242,7 @@ int main(int argc, char* args[])
 	clip[3].h = 34;
 
 
+	Mix_PlayMusic(music, -1);
 	while(quit == false)
 	{
 		update = SDL_GetTicks();
@@ -325,6 +358,7 @@ int main(int argc, char* args[])
 
 		if(field.digFlag == 1)
 		{
+			Mix_PlayChannel(-1, digSound, 0);
 			score += 100;
 		}
 
