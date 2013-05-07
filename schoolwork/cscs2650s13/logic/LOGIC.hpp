@@ -13,7 +13,8 @@ class Logic{
 	char s, r, q, qbar;
 	char out0, out1;
 	char clk;
-	char tmp1, tmp2;
+	char tmp1, tmp2, tmp3, tmp4;
+	char q2, qbar2;
 	int clkGen;
 public:
 	char AND(char, char);
@@ -33,8 +34,12 @@ public:
 	void setQs(char, char);
 	char getQ();
 	char getQBar();
+	void setQs2(char, char);
+	char getQ2();
+	char getQBar2();
 	void DEMUX(char, char);
-	void NANDL(char, char);
+	void RSLATCH(char, char);
+	void RSLATCH2(char, char);
 	void NORL(char, char);
 	char CLOCK();
 	char getCLOCK();
@@ -228,13 +233,29 @@ char Logic::getQBar()
 	return qbar;
 }
 
+void Logic::setQs2(char q2, char qbar2)
+{
+	this->q2 = q2;
+	this->qbar2 = qbar2;
+}
+
+char Logic::getQ2()
+{
+	return q2;
+}
+
+char Logic::getQBar2()
+{
+	return qbar2;
+}
+
 void Logic::DEMUX(char a, char in1)
 {
 	out0 = AND(NOT(a), in1);
 	out1 = AND(NOT(NOT(a)), in1);
 }
 
-void Logic::NANDL(char r, char s)
+void Logic::RSLATCH(char s, char r)
 {
 	if(s == FALSESTATE)
 	{
@@ -253,6 +274,28 @@ void Logic::NANDL(char r, char s)
 	{
 		qbar = TRUESTATE;
 		q = NAND(s, qbar);
+	}
+}
+
+void Logic::RSLATCH2(char s, char r)
+{
+	if(s == FALSESTATE)
+	{
+		if(r == FALSESTATE)
+		{
+			q2 = TRUESTATE;
+			qbar2 = TRUESTATE;
+		}
+		else
+		{
+			q2 = TRUESTATE;
+			qbar2 = NAND(r, q2);
+		}
+	}
+	else if(r == FALSESTATE)
+	{
+		qbar = TRUESTATE;
+		q2 = NAND(s, qbar2);
 	}
 }
 
@@ -309,7 +352,10 @@ void Logic::CLOCKRSNAND(char s, char r, char clock)
 	s = NAND(s, clock);
 	r = NAND(r, clock);
 
-	NANDL(s, r);
+	RSLATCH(s, r);
+
+	q2 = getQ();
+	qbar2 = getQBar();
 }
 
 void Logic::EDGEFLIPFLOP(char s, char r, char clock)
@@ -320,10 +366,15 @@ void Logic::EDGEFLIPFLOP(char s, char r, char clock)
 
 void Logic::JKFLIPFLOP(char j, char k, char clock)
 {
-	tmp1 = NOT(VAND(3, j, clock, getQBar()));
-	tmp2 = NOT(VAND(3, k, clock, getQ()));
-	NANDL(tmp1, tmp2);
-	CLOCKRSNAND(getQ(), getQBar(), NOT(clock));
+//	printf("\nq2: %c qbar2: %c\n", getQ2(), getQBar2());
+	tmp1 = NOT(VAND(3, j, clock, getQBar2()));
+	tmp2 = NOT(VAND(3, k, clock, getQ2()));
+	RSLATCH(tmp1, tmp2);
+//	printf("q: %c qbar: %c\n", getQ(), getQBar());
+	tmp3 = NAND(getQ(), NOT(clock));
+	tmp4 = NAND(getQBar(), NOT(clock));
+//	printf("tmp1: %c tmp2 %c\n", tmp3, tmp4);
+	RSLATCH2(tmp3, tmp4);
 }
 
 void Logic::DLATCH(char d, char clock)
@@ -331,7 +382,7 @@ void Logic::DLATCH(char d, char clock)
 	tmp1 = NAND(d, clock);
 	tmp2 = NAND(NOT(tmp1), clock);
 
-	NANDL(tmp1, tmp2);
+	RSLATCH(tmp1, tmp2);
 }
 
 void Logic::DFLIPFLOP(char d, char clock)
