@@ -25,8 +25,4 @@ int main()
 	printf("\n#3.1: %c\n", logicTester.getQ());
 	logicTester.JKFLIPFLOP(d, b, b);
 	printf("#3.2: %c\n", logicTester.getQ());
-	logicTester.JKFLIPFLOP(b, d, a);
-	printf("\n#3.1: %c\n", logicTester.getQ());
-	logicTester.JKFLIPFLOP(d, b, b);
-	printf("#3.2: %c\n", logicTester.getQ());
 }
