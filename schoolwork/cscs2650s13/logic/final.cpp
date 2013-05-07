@@ -21,8 +21,22 @@ int main()
 	logicTester.NANDL(b, c);
 	printf("#2.2: %c\n", logicTester.getQ());
 
+	logicTester.setQs('-', '+');
+
 	logicTester.JKFLIPFLOP(b, d, a);
-	printf("\n#3.1: %c\n", logicTester.getQ());
+	printf("\n#1, 1, 0: %c\n", logicTester.getQ());
 	logicTester.JKFLIPFLOP(d, b, b);
-	printf("#3.2: %c\n", logicTester.getQ());
+	printf("#1, 1, 1: %c\n", logicTester.getQ());
+	logicTester.JKFLIPFLOP(b, d, a);
+	printf("\n#1, 1, 0: %c\n", logicTester.getQ());
+	logicTester.JKFLIPFLOP(d, b, b);
+	printf("#1, 1, 1: %c\n", logicTester.getQ());
+	logicTester.JKFLIPFLOP(b, d, a);
+	printf("\n#1, 1, 0: %c\n", logicTester.getQ());
+	logicTester.JKFLIPFLOP(d, b, b);
+	printf("#1, 1, 1: %c\n", logicTester.getQ());
+	logicTester.JKFLIPFLOP(b, d, a);
+	printf("\n#1, 1, 0: %c\n", logicTester.getQ());
+	logicTester.JKFLIPFLOP(d, b, b);
+	printf("#1, 1, 1: %c\n", logicTester.getQ());
 }

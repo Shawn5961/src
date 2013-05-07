@@ -30,6 +30,7 @@ public:
 	char VAND(int, ...);
 	char getOut0();
 	char getOut1();
+	void setQs(char, char);
 	char getQ();
 	char getQBar();
 	void DEMUX(char, char);
@@ -211,6 +212,12 @@ char Logic::getOut1()
 	return out1;
 }
 	
+void Logic::setQs(char q, char qbar)
+{
+	this->q = q;
+	this->qbar = qbar;
+}
+
 char Logic::getQ()
 {
 	return q;
@@ -227,7 +234,7 @@ void Logic::DEMUX(char a, char in1)
 	out1 = AND(NOT(NOT(a)), in1);
 }
 
-void Logic::NANDL(char s, char r)
+void Logic::NANDL(char r, char s)
 {
 	if(s == FALSESTATE)
 	{
