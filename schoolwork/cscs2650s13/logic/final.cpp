@@ -25,19 +25,20 @@ int main()
 	logicTester.setQs2('-', '+');
 
 	logicTester.JKFLIPFLOP(b, d, a);
-	printf("\n#1, 1, 0: %c\n", logicTester.getQ2());
+	printf("#1, 1, 0: %c\n", logicTester.getQ2());
 	logicTester.JKFLIPFLOP(d, b, b);
 	printf("#1, 1, 1: %c\n", logicTester.getQ2());
 	logicTester.JKFLIPFLOP(b, d, a);
-	printf("\n#1, 1, 0: %c\n", logicTester.getQ2());
+	printf("#1, 1, 0: %c\n", logicTester.getQ2());
+	logicTester.JKFLIPFLOP(d, b, b);
+	printf("#1, 1, 1: %c\n", logicTester.getQ2());
+	getchar();
+	logicTester.JKFLIPFLOP(b, d, a);
+	printf("#1, 1, 0: %c\n", logicTester.getQ2());
 	logicTester.JKFLIPFLOP(d, b, b);
 	printf("#1, 1, 1: %c\n", logicTester.getQ2());
 	logicTester.JKFLIPFLOP(b, d, a);
-	printf("\n#1, 1, 0: %c\n", logicTester.getQ2());
-	logicTester.JKFLIPFLOP(d, b, b);
-	printf("#1, 1, 1: %c\n", logicTester.getQ2());
-	logicTester.JKFLIPFLOP(b, d, a);
-	printf("\n#1, 1, 0: %c\n", logicTester.getQ2());
+	printf("#1, 1, 0: %c\n", logicTester.getQ2());
 	logicTester.JKFLIPFLOP(d, b, b);
 	printf("#1, 1, 1: %c\n", logicTester.getQ2());
 }
