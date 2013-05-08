@@ -6,8 +6,9 @@ int main()
 	char a = '1', b = '1', c = '0', d = '0', e;
 	Logic logicTester;
 	
+	printf("NOT, AND, OR\n");
 	e = logicTester.NOT(logicTester.AND(b, logicTester.OR(c, a)));
-	printf("#1: %c\n", e);
+	printf("%c\n", e);
 
 	//My RSLatch accepts arguments in the form of S, R
 	printf("\nRSLatch\n");
