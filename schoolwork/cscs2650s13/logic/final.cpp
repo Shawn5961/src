@@ -1,47 +1,36 @@
 #include <stdio.h>
 #include "LOGIC.hpp"
 
-/*
-1: D: and, or, not: +
-2: C: RSLatch: - +
-3: B: JKFlipFlop: 
-4: A: 
-*/
-
 int main()
 {
-	char a = '-', b = '+', c = '-', d = '+', e;
+	char a = '1', b = '1', c = '0', d = '0', e;
 	Logic logicTester;
 	
-	e = logicTester.NOT(logicTester.AND(b, logicTester.OR(c, d)));
+	e = logicTester.NOT(logicTester.AND(b, logicTester.OR(c, a)));
 	printf("#1: %c\n", e);
 
+	//My RSLatch accepts arguments in the form of S, R
 	printf("\nRSLatch\n");
 	printf("S, R\n");
-	logicTester.RSLATCH(a, b);
-	printf("1, 0: %c\n", logicTester.getQ());
-	logicTester.RSLATCH(b, c);
+	logicTester.RSLATCH(e, b);
 	printf("0, 1: %c\n", logicTester.getQ());
+	logicTester.RSLATCH(d, a);
+	printf("0, 1: %c\n", logicTester.getQ());
+	logicTester.RSLATCH(a, d);
+	printf("1, 0: %c\n", logicTester.getQ());
 
-	logicTester.setQs('-', '+');
-	logicTester.setQs2('-', '+');
+	//Reset Q's for Flip Flop
+	logicTester.setQs('0', '1');
+	logicTester.setQs2('0', '1');
 
 	printf("\nJK Flip Flop\n");
 	printf("J, K, Clk\n");
-	logicTester.JKFLIPFLOP(b, d, a);
+	logicTester.JKFLIPFLOP(a, b, c);
 	printf("1, 1, 0: %c\n", logicTester.getQ2());
-	logicTester.JKFLIPFLOP(d, b, b);
+	logicTester.JKFLIPFLOP(b, a, b);
 	printf("1, 1, 1: %c\n", logicTester.getQ2());
-	logicTester.JKFLIPFLOP(b, d, a);
+	logicTester.JKFLIPFLOP(a, a, d);
 	printf("1, 1, 0: %c\n", logicTester.getQ2());
-	logicTester.JKFLIPFLOP(d, b, b);
-	printf("1, 1, 1: %c\n", logicTester.getQ2());
-	logicTester.JKFLIPFLOP(b, d, a);
-	printf("1, 1, 0: %c\n", logicTester.getQ2());
-	logicTester.JKFLIPFLOP(d, b, b);
-	printf("1, 1, 1: %c\n", logicTester.getQ2());
-	logicTester.JKFLIPFLOP(b, d, a);
-	printf("1, 1, 0: %c\n", logicTester.getQ2());
-	logicTester.JKFLIPFLOP(d, b, b);
+	logicTester.JKFLIPFLOP(b, b, a);
 	printf("1, 1, 1: %c\n", logicTester.getQ2());
 }

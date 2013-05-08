@@ -2,8 +2,8 @@
 #include <stdarg.h>
 #include <time.h>
 
-#define TRUESTATE '+'
-#define FALSESTATE '-'
+#define TRUESTATE '1'
+#define FALSESTATE '0'
 #define INVALID 'x' 
 
 
