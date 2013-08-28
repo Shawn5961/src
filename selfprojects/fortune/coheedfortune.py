@@ -33,7 +33,6 @@ for line2 in soup2.findAll(text=re.compile('\r\n')):
 						numLines += 1
 						lineArray.append(line2)
 
-#print numLines
 
 lineChoice = random.randint(0, numLines - 1)
 print lineArray[lineChoice]
