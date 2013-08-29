@@ -6,6 +6,13 @@
 int cardVal[52];
 char cardSuit[52];
 
+struct shuffledDeck{
+	int value[52];
+	char suit[52];
+};
+
+struct shuffledDeck deck;
+
 int deckInit()
 {
 	int cardNum;
@@ -51,22 +58,14 @@ int deckInit()
 	return 0;
 }
 
-int main()
+int deckShuffle()
 {
-	srand(time(NULL));
 	deckInit();
 
 	int cardPick;
 	int cardFlag[52];
 
-	struct shuffledDeck{
-		int value[52];
-		char suit[52];
-	};
-
-	int i, j, k;
-
-	struct shuffledDeck deck;
+	int i, j;
 
 	for ( i = 0; i < 52; i++ )
 	{
@@ -89,9 +88,19 @@ int main()
 		}
 	}
 
-	for ( k = 0; k < 52; k++ )
+	return 0;
+}
+
+int main()
+{
+	srand(time(NULL));
+	int i;
+
+	deckShuffle();
+
+	for ( i = 0; i < 52; i++ )
 	{
-		printf("Card %d: %d%c\n", k+1, deck.value[k], deck.suit[k]);
+		printf("Card %d: %d%c\n", i+1, deck.value[i], deck.suit[i]);
 	}
 
 	return 0;
