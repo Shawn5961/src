@@ -10,4 +10,30 @@ int map_peripheral(struct bcm2835_peripheral *p)
 	{
 		printf("Failed to open /dev/mem, try checking permissions.\n");
 		return -1;
+	}
 
+	p->map = mmap(
+		NULL,
+		BLOCK_SIZE,
+		PROT_READ|PROT_WROTE,
+		MAP_SHARED,
+		p->mem_fd,
+		p->addr.p
+	};
+
+	if (p->map == MAP_FAILED)
+	{
+		perror("mmap");
+		return -1;
+	}
+
+	p->addr = (volatile unsigned int *)p->map;
+
+	return 0;
+}
+
+void unmap_peripheral(struct bcm2835_peripheral *p)
+{
+	munmap(p->map, BLOCK_SIZE);
+	close(p->mem_fd);
+}
