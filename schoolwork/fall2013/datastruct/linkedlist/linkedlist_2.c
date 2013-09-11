@@ -58,16 +58,30 @@ int main()
 
 	tmp = list;
 
-	for( seeker = 0; seeker < (input-1); seeker++ )
-		tmp = tmp->next;
+	if( input != 0 )
+	{
+		for( seeker = 0; seeker < (input-1); seeker++ )
+			tmp = tmp->next;
 
-	printf("Enter a value to insert: ");
-	scanf("%d", &input);
+		printf("Enter a value to insert: ");
+		scanf("%d", &input);
 
-	tmp2 = (Node*)malloc(sizeof(Node));
-	tmp2->value = input;
-	tmp2->next = tmp->next;
-	tmp->next = tmp2;
+		tmp2 = (Node*)malloc(sizeof(Node));
+		tmp2->value = input;
+		tmp2->next = tmp->next;
+		tmp->next = tmp2;
+	}
+	else if( input == 0 )
+	{
+		printf("Enter value for new node: ");
+		scanf("%d", &input);
+
+		tmp2 = (Node*)malloc(sizeof(Node));
+		tmp2->value = input;
+		tmp2->next = NULL;
+		tmp2->next = tmp;
+		list = tmp2;
+	}
 
 	tmp = list;
 	input = 0;
