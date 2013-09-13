@@ -14,7 +14,7 @@ int main()
 	{
 		INP_GPIO(i);
 		OUT_GPIO(i);
-		GPIO_CLR = 1 << i;
+		GPIO_SET = 1 << i;
 	}
 
 	return 0;
