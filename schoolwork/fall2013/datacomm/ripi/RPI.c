@@ -15,11 +15,11 @@ int map_peripheral(struct bcm2835_peripheral *p)
 	p->map = mmap(
 		NULL,
 		BLOCK_SIZE,
-		PROT_READ|PROT_WROTE,
+		PROT_READ|PROT_WRITE,
 		MAP_SHARED,
 		p->mem_fd,
-		p->addr.p
-	};
+		p->addr_p
+	);
 
 	if (p->map == MAP_FAILED)
 	{
