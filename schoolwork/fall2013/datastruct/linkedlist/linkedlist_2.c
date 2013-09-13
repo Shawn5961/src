@@ -52,6 +52,25 @@ int main()
 
 	printf("NULL\n");
 
+	//Append to list
+	printf("Enter a value to add: ");
+	scanf("%d", &input);
+
+	tmp->next = (Node*)malloc(sizeof(Node));
+	tmp->next->next = NULL;
+	tmp->next->value = input;
+	tmp = tmp->next;
+
+	tmp = list;
+	input = 0;
+
+	while( tmp != NULL )
+	{
+		printf("[%d] %d\n", input, tmp->value);
+		tmp = tmp->next;
+		input++;
+	}
+
 	//Insert into list
 	printf("Which node would you like to insert before: ");
 	scanf("%d", &input);
