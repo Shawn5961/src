@@ -5,6 +5,8 @@
 
 #include <stdio.h>
 
+int calcRightComplement(int, int);
+
 int main()
 {
 	//Initialize int variables for p, q, and result.
@@ -53,14 +55,25 @@ int main()
 			printf("Invalid input for q. Please use 1 for true or 0 for false: ");
 	}
 
+	//Call the function to calculate the Right Complement, and set it's outcome to result
+	result = calcRightComplement(p, q);
+
+	//Return the value after the calculation
+	printf("The right complement of p:%d and q:%d is %d\n", p, q, result);
+
+	return 0;
+}
+
+// Function to calculate the Right Complement. 
+int calcRightComplement(int p, int q)
+{
+	int result;
+
 	//Perform the calculation on the given values
 	if ( q == 0 )
 		result = 1;
 	else if ( q == 1 )
 		result = 0;
 
-	//Return the value after the calculation
-	printf("The right complement of p:%d and q:%d is %d\n", p, q, result);
-
-	return 0;
+	return result;
 }
