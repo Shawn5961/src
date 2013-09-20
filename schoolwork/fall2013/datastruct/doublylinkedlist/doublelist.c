@@ -17,14 +17,45 @@ struct list{
 typedef struct list List;
 
 List *build();
+List *insert(List*, Node*, Node*);
+List *getNode(List*, Node**);
+Node *seek(List*, int);
 void displayf(List*);
 void displayb(List*);
+void debug();
 
 int main()
 {
+	int input;
+
+	Node *nodePlace, *nodeValue;
+
 	List *mylist = (List*)malloc(sizeof(List));
 
 	mylist = build();
+	displayf(mylist);
+	displayb(mylist);
+	
+	printf("Enter a node to insert before: ");
+	scanf("%d", &input);
+	nodePlace = seek(mylist, input);
+
+	printf("Enter a value to insert: ");
+	scanf("%d", &input);
+	nodeValue = (Node*)malloc(sizeof(Node));
+	nodeValue->value = input;
+
+	insert(mylist, nodePlace, nodeValue);
+
+	displayf(mylist);
+	displayb(mylist);
+
+	printf("Enter a node to remove: ");
+	scanf("%d", &input);
+	nodePlace = seek(mylist, input);
+
+	getNode(mylist, &nodePlace);
+
 	displayf(mylist);
 	displayb(mylist);
 
@@ -82,7 +113,6 @@ void displayf(List *mylist)
 	}
 }
 
-
 void displayb(List *mylist)
 {
 	Node *tmp = NULL;
@@ -90,14 +120,12 @@ void displayb(List *mylist)
 	tmp = mylist->end;
 	int input = 0;
 
-	while( tmp != NULL )
+	while( tmp->prev != NULL )
 	{
 		tmp = tmp->prev;
 		input++;
 	}
 	
-	input--;
-
 	tmp = mylist->end;
 
 	while( tmp != NULL )
@@ -108,3 +136,67 @@ void displayb(List *mylist)
 	}
 }
 
+List *insert(List *mylist, Node *place, Node *newNode)
+{
+	if( place == mylist->start )
+	{
+		newNode->next = place;
+		place->prev = newNode;
+		newNode->prev = NULL;
+		mylist->start = newNode;
+	}
+	else
+	{
+		newNode->next = place;
+		place->prev->next = newNode;
+		newNode->prev = place->prev;
+		place->prev = newNode;
+	}
+
+	return mylist;
+}
+
+List *getNode(List *mylist, Node **place)
+{
+	if( *place == mylist->start )
+	{
+		mylist->start = mylist->start->next;
+		mylist->start->prev = NULL;
+		(*place)->next = NULL;
+	}
+	else if( *place == mylist->end )
+	{
+		mylist->end = mylist->end->prev;
+		mylist->end->next = NULL;
+		(*place)->prev = NULL;
+	}
+	else
+	{
+		(*place)->prev->next = (*place)->next;
+		(*place)->next->prev = (*place)->prev;
+		(*place)->prev = (*place)->next = NULL;
+	}
+
+	return mylist;
+}
+
+Node *seek(List *mylist, int input)
+{
+	Node *tmp = NULL;
+	int seeker;
+
+	tmp = mylist->start;
+
+	if( input != 0 )
+	{
+		for( seeker = 0; seeker < input; seeker++ )
+			tmp = tmp->next;
+	}
+
+	return tmp;
+}
+
+void debug()
+{
+	printf("\nDEBUG\n");
+}
