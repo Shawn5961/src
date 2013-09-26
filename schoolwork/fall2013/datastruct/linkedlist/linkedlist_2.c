@@ -45,6 +45,7 @@ int main()
 		printf("6: Clear list\n");
 		printf("0: Quit\n");
 		scanf("%d", &option);
+		printf("\nmenudebug\n");
 
 		switch( option )
 		{
@@ -67,6 +68,7 @@ int main()
 				break;
 
 			case 4:
+				printf("\ncasedebug\n");
 				sortList(list);
 				break;
 
@@ -256,43 +258,51 @@ List *clearList(List *list)
 
 List *sortList(List *list)
 {
-	Node *tmp, *tmp2, *highest, *end;
+	Node *tmp, *tmp2, *tmp3;
 
-	tmp = tmp2 = highest = end = list->start;
-
-	int i, count = 0;
+	tmp = tmp2 = tmp3 = list->start;
 	
-
-	while( end != NULL )
-	{
-		end = end->next;
-		count++;
-	}
-
-	end = list->start;
+	int i, count = 0;
+	int flag = 0;
+	int tempint;
 
 	while( tmp != NULL )
 	{
-		for ( i = 0; i < count; i++ )
+		count++;
+		tmp = tmp->next;
+	}
+
+	tmp = list->start;
+
+	printf("\n%d\n", count);
+
+	do
+	{
+		for( i = 0; i < (count-1); i++ )
 		{
-			if( highest->value > tmp->value )
-				highest = tmp;
-			
+			if( tmp->value > tmp->next->value )
+			{
+				displayList(list);
+				tempint = tmp->next->value;
+				tmp->next->value = tmp->value;
+				tmp->value = tempint;
+				//displayList(list);
+			}
+
 			tmp = tmp->next;
 		}
 
-		removeNode(list, (count-1));
-		end = list->start;
+		printf("\ndonk\n");
 
-		for( i = 0; i < (count-1); i++ )
-			end = end->next;
-
-		printf("\ndebug\n");
-
-		appendList(list, highest->value);
+		tmp = list->start;
 
 		count--;
-	}
+		
+		if( count == 1 )
+			flag = 1;
+
+	} while( flag == 0 );
+
 
 	return list;
 }
