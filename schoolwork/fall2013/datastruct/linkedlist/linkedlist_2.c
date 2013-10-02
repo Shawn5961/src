@@ -274,25 +274,19 @@ List *sortList(List *list)
 
 	tmp = list->start;
 
-	printf("\n%d\n", count);
-
 	do
 	{
 		for( i = 0; i < (count-1); i++ )
 		{
 			if( tmp->value > tmp->next->value )
 			{
-				displayList(list);
 				tempint = tmp->next->value;
 				tmp->next->value = tmp->value;
 				tmp->value = tempint;
-				//displayList(list);
 			}
 
 			tmp = tmp->next;
 		}
-
-		printf("\ndonk\n");
 
 		tmp = list->start;
 
