@@ -13,12 +13,12 @@ int main()
 	//Define pin 11 as output
 	INP_GPIO(7);
 	OUT_GPIO(7);
+	INP_GPIO(8);
+	OUT_GPIO(8);
 	INP_GPIO(9);
 	OUT_GPIO(9);
 	INP_GPIO(10);
 	OUT_GPIO(10);
-	INP_GPIO(11);
-	OUT_GPIO(11);
 
 
 	while( 1 )
@@ -29,9 +29,9 @@ int main()
 			GPIO_CLR = 1 << 7;
 
 		if( (counter % 4) >= 2 )
-			GPIO_SET = 1 << 11;
+			GPIO_SET = 1 << 8;
 		else
-			GPIO_CLR = 1 << 11;
+			GPIO_CLR = 1 << 8;
 
 		if( (counter % 8) >= 4 )
 			GPIO_SET = 1 << 9;
@@ -43,7 +43,7 @@ int main()
 		else
 			GPIO_CLR = 1 << 10;
 
-		sleep(1);
+		usleep(500000);
 
 		counter++;
 	}

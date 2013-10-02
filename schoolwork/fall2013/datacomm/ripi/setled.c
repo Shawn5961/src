@@ -10,7 +10,7 @@ int main()
 		return -1;
 	}
 
-	for( i = 7; i <= 11; i++ )
+	for( i = 7; i <= 10; i++ )
 	{
 		INP_GPIO(i);
 		OUT_GPIO(i);
