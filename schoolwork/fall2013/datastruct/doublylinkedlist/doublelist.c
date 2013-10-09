@@ -1,66 +1,6 @@
+#include "doublelist.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-struct node{
-	int value;
-	struct node *next;
-	struct node *prev;
-};
-
-typedef struct node Node;
-
-struct list{
-	struct node *start;
-	struct node *end;
-};
-
-typedef struct list List;
-
-List *build();
-List *insert(List*, Node*, Node*);
-List *getNode(List*, Node**);
-Node *seek(List*, int);
-void displayf(List*);
-void displayb(List*);
-void debug();
-
-int main()
-{
-	int input;
-
-	Node *nodePlace, *nodeValue;
-
-	List *mylist = (List*)malloc(sizeof(List));
-
-	mylist = build();
-	displayf(mylist);
-	displayb(mylist);
-	
-	printf("Enter a node to insert before: ");
-	scanf("%d", &input);
-	nodePlace = seek(mylist, input);
-
-	printf("Enter a value to insert: ");
-	scanf("%d", &input);
-	nodeValue = (Node*)malloc(sizeof(Node));
-	nodeValue->value = input;
-
-	insert(mylist, nodePlace, nodeValue);
-
-	displayf(mylist);
-	displayb(mylist);
-
-	printf("Enter a node to remove: ");
-	scanf("%d", &input);
-	nodePlace = seek(mylist, input);
-
-	getNode(mylist, &nodePlace);
-
-	displayf(mylist);
-	displayb(mylist);
-
-	return 0;
-}
 
 List *build()
 {
@@ -194,9 +134,4 @@ Node *seek(List *mylist, int input)
 	}
 
 	return tmp;
-}
-
-void debug()
-{
-	printf("\nDEBUG\n");
 }
