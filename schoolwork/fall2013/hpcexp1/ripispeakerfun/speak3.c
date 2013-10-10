@@ -50,10 +50,11 @@ int main()
 
 		gettimeofday(&tv, NULL);
 		newTime = tv.tv_usec;
-		if( (newTime % 5000) < 2500)
-			note_Ascend(counter);
-		else if( (newTime % 5000) >= 2500)
-			note_Descend(counter2);
+		if( (newTime % 500000) < 200000)
+			note_A4();
+		else if( (newTime % 500000) >= 200000)
+			note_A4_2();
+				
 
 		if( counter == 880 )
 			flag = 1;

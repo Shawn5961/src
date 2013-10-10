@@ -8,35 +8,42 @@
 int main(void)
 {
 	int bright;
+	FILE *dickass;
 
 	printf("Raspberry Pi wiringPi PWM test program\n");
 
 	if( wiringPiSetup () == -1 )
 		exit(1);
 
+	pwmSetMode(PWM_MODE_MS);
 	pinMode(1, PWM_OUTPUT);
 
 	int i;
-	int buf[8000];
+	float q, buf[22];
 
-	for( i = 0; i < 8000; i++ )
+	dickass = fopen("dat", "w");
+	for( i = 0; i < 22; i++ )
 	{
 //		buf[i] = sin(i * 440.0 / 8000.0 * 2.0 * 3.14159);
-		int q = (sin(i * 440.0 / 8000.0 * 2.0 * 3.14159)) * 512 + 512;
-//		printf("%d\n", q);
+		q = (sin(i * 440.0 / 8000.0 * 3.14159) * 512 + 512);
+//		q = sin((1000 * (2 * 3.14159) * i) / 44100) * 440;
+//		q = 400;
 		buf[i] = q;
+		fprintf(dickass, "%f\n", buf[i]);
 	}
-	
+	fclose(dickass);
+
+	printf("\n\n");
 	printf("Let's get it started, HA!\n");
 	for(;;)
 	{
-		for( bright = 0; bright < 8000; ++bright )
+		for( bright = 0; bright < 22; ++bright )
 		{
-//			printf("%d\n", buf[bright]);
+//			printf("%f\n", buf[bright]);
 			pwmWrite(1, buf[bright]);
 			usleep(125);
 		}
 	}
-	
+
 	return 0;
 }

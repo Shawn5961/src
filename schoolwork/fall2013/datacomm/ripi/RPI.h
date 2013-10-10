@@ -23,7 +23,7 @@
 //Clears bits which are 1 ignores bits which are 0
 #define GPIO_CLR 				*(gpio.addr + 10)
 
-#define GPIO_READ(g)			*(gpio.addr +13) &= (<<(g))
+#define GPIO_READ(g)			*(gpio.addr +13) &= (1<<(g))
 // IO Access
 
 struct bcm2835_peripheral {

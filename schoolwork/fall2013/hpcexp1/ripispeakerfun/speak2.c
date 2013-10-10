@@ -15,6 +15,7 @@ int main()
 	int counter2 = 440;
 	int countersine;
 	int flag = 0, flag2 = 0;
+	int i;
 
 	float time1, time2;
 
@@ -48,14 +49,82 @@ int main()
 			note_E5();
 */
 
-		gettimeofday(&tv, NULL);
-		newTime = tv.tv_usec;
-		if( (newTime % 5000) < 2500)
-			note_Ascend(counter);
-		else if( (newTime % 5000) >= 2500)
-			note_Descend(counter2);
+		if( flag < 4 )
+		{	
+			gettimeofday(&tv, NULL);
+			newTime = tv.tv_usec;
+			if( (newTime % 1000000) < 250000)
+			{	
+			//	note_Ascend(counter);
+				note_A4();
+			}
+			else if( (newTime % 1000000) < 500000)
+			{	
+			//	note_Descend(counter2);
+				note_B4();
+			}
+			else if( (newTime % 1000000) < 750000 )
+			{
+				note_C5();
+			}
+			else if( (newTime % 1000000) >= 750000 )
+			{
+				note_D5();
+			}
 
-		if( counter == 880 )
+			if( (newTime % 1000000) < 2000 )
+			{
+				flag++;
+				printf("1st loop, flag = %d\n", flag);
+			}	
+		}
+		else if( flag >= 4 )
+		{
+			gettimeofday(&tv, NULL);
+			newTime = tv.tv_usec;
+			if( (newTime % 1000000) < 250000)
+			{	
+			//	note_Ascend(counter);
+				note_E5();
+			}
+			else if( (newTime % 1000000) < 500000)
+			{	
+			//	note_Descend(counter2);
+				note_B4();
+			}
+			else if( (newTime % 1000000) < 750000 )
+			{
+				note_C5();
+			}
+			else if( (newTime % 1000000) >= 750000 )
+			{
+				note_D5();
+			}
+
+			if( (newTime % 1000000) < 2000 )
+			{
+				flag++;
+				printf("2nd loop, flag = %d\n", flag);
+			}	
+
+			if( flag == 8 )
+			{
+				flag = 0;
+				printf("Flag is maxed, flag = %d\n", flag);
+			}	
+		}
+
+/*		if( counter == 880 )
+			flag = 1;
+		if( counter == 220 )
+			flag = 0;
+
+		if( flag == 1 )
+		{
+			counter--;
+			counter2++;
+		}
+/*		if( counter == 880 )
 			flag = 1;
 		if( counter == 220 )
 			flag = 0;
@@ -70,7 +139,7 @@ int main()
 			counter++;
 			counter2--;
 		}
-
+*/
 /*		if( (counter % 200) == 0 )
 		{
 			flag = rand() % 10;
