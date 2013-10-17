@@ -4,7 +4,7 @@ int main()
 {
 	int counter = 0;
 	int option;
-	int debug;
+	int led_1, led_2, led_3, led_4;
 
 	if( map_peripheral(&gpio) == -1 )
 	{
@@ -14,23 +14,9 @@ int main()
 
 	//Define output pins
 	OUT_GPIO(7);
-	//INP_GPIO(7);
 	OUT_GPIO(8);
-	//INP_GPIO(8);
 	OUT_GPIO(9);
-	//INP_GPIO(9);
 	OUT_GPIO(10);
-	//INP_GPIO(10);
-
-	//Define input pins
-	//OUT_GPIO(4);
-	INP_GPIO(4);
-	//OUT_GPIO(17);
-	INP_GPIO(17);
-	//OUT_GPIO(21);
-	INP_GPIO(21);
-	//OUT_GPIO(22);
-	INP_GPIO(22);
 
 	
 	printf("Are you the pitcher or catcher?\n");
@@ -40,6 +26,10 @@ int main()
 
 	switch ( option )
 	{
+		OUT_GPIO(4);
+		OUT_GPIO(17);
+		OUT_GPIO(21);
+		OUT_GPIO(22);
 		case 1:
 			while(1)
 			{
@@ -54,9 +44,9 @@ int main()
 					GPIO_CLR = 1 << 17;
 
 				if( (counter % 8) >= 4 )
-					GPIO_SET = 1 << 21;
+					GPIO_SET = 1 << 27;
 				else
-					GPIO_CLR = 1 << 21;
+					GPIO_CLR = 1 << 27;
 					
 				if( (counter % 16) >= 8 )
 					GPIO_SET = 1 << 22;
@@ -71,38 +61,36 @@ int main()
 			break;
 
 		case 2:
-			printf("lolol poop");
+			INP_GPIO(4);
+			INP_GPIO(17);
+			INP_GPIO(27);
+			INP_GPIO(22);
 			while(1)
 			{
-				debug = GPIO_READ(4);
-				printf("%d\n", debug);
-				if( GPIO_READ(4) != 0 )
-				{	
-				//	printf("IMONBITCH\n");
+				led_1 = GPIO_READ(4);
+				led_2 = GPIO_READ(17);
+				led_3 = GPIO_READ(27);
+				led_4 = GPIO_READ(22);
+				if( led_1 != 0)
 					GPIO_SET = 1 << 7;
-				}
 				else
-				{	
-				//	printf("OFFBITCH!\n");
 					GPIO_CLR = 1 << 7;
-				}
 
-				if( GPIO_READ(17) != 0 )
+				if( led_2 != 0 )
 					GPIO_SET = 1 << 8;
 				else
 					GPIO_CLR = 1 << 8;
 
-				if( GPIO_READ(21) != 0 )
+				if( led_3 != 0 )
 					GPIO_SET = 1 << 9;
 				else
 					GPIO_CLR = 1 << 9;
 
-				if( GPIO_READ(22) != 0 )
+				if( led_4 != 0 )
 					GPIO_SET = 1 << 10;
 				else
 					GPIO_CLR = 1 << 10;
 
-				usleep(100000);
 			}
 			break;
 
