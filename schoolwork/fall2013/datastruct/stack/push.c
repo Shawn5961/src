@@ -1,10 +1,14 @@
 #include "stack.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-void push(Stack **myStack, Node *newNode)
+Stack *push(Stack *myStack, Node *newNode)
 {
-	if( (*myStack)->size >= (*myStack->data->qty))
+	if ((myStack -> size > 0) && ((myStack -> data -> qty) < (myStack -> size)))
 	{
-		(*myStack)->data = append((*myStack)->data, (*myStack)->data->end, newNode);
-		(*myStack)->top = (*myStack)->data->end;
+		myStack -> data = insert(myStack -> data, myStack -> data -> end, newNode);
+		myStack -> top  = myStack -> data -> end;
 	}
+
+	return(myStack);
 }

@@ -2,6 +2,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+Node *mknode(int value)
+{
+	Node *mynode = (Node*)malloc(sizeof(Node));
+	mynode->prev = mynode->next = NULL;
+	mynode->value = value;
+
+	return mynode;
+}
+
+List *mklist()
+{
+	List *mylist = (List*)malloc(sizeof(List));
+	mylist->start = mylist->end = NULL;
+
+	return mylist;
+}
+
 List *build()
 {
 	List *mylist = (List*)malloc(sizeof(List));
@@ -96,6 +113,7 @@ List *insert(List *mylist, Node *place, Node *newNode)
 	return mylist;
 }
 
+
 List *getNode(List *mylist, Node **place)
 {
 	if( *place == mylist->start )
@@ -134,4 +152,20 @@ Node *seek(List *mylist, int input)
 	}
 
 	return tmp;
+}
+
+List *qty(List *mylist)
+{
+	Node *tmp = NULL;
+
+	tmp = mylist->start;
+	mylist->qty = 0;
+
+	while( tmp->next != NULL )
+	{
+		mylist->qty++;
+		tmp = tmp->next;
+	}
+
+	return mylist;
 }

@@ -42,19 +42,6 @@ if has("autocmd")
 	autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
 	\| exe "normal! g'\"" | endif
 
-	" automatically save and restore views (folds)
-	" maps have to be made *after* restoring or else the new maps
-	" mess with the loadview
-	autocmd BufWrite ?* mkview
-	autocmd BufRead ?* silent! loadview | nnoremap Z zd
-	" | nnoremap z za | vnoremap z zf
-
-	" automatically reload vimrc when it's saved
-	autocmd BufWritePost .vimrc so ~/.vimrc
-
-	" automatically resize splits when the window is resized
-	autocmd VimResized * exe "normal! \<c-w>="
-
 	" update the title and stuff
 	autocmd BufEnter * let &titlestring = $USER . " " . hostname(). " | vim " . expand("%:~:p")
 	set title
