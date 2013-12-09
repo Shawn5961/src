@@ -1,0 +1,51 @@
+make[1]: Entering directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src'
+make[2]: Entering directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src/btree'
+[L]                        ... SUCCESS
+make[2]: Leaving directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src/btree'
+
+make[2]: Entering directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src/list'
+[B]   append.cc            ... OK
+[B]   create.cc            ... OK
+[B]   destroy.cc           ... OK
+[B]   display.cc           ... OK
+[B]   getnode.cc           ... OK
+[B]   insert.cc            ... OK
+[B]   size.cc              ... OK
+[B]   sort.cc              ... OK
+[L]                        ... SUCCESS
+make[2]: Leaving directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src/list'
+
+make[2]: Entering directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src/node'
+[B]   copy.cc              ... OK
+[B]   create.cc            ... OK
+[B]   data.cc              ... OK
+[B]   destroy.cc           ... OK
+[B]   next.cc              ... OK
+[B]   prev.cc              ... OK
+[B]   value.cc             ... OK
+[L]                        ... SUCCESS
+make[2]: Leaving directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src/node'
+
+make[2]: Entering directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src/queue'
+[B]   create.cc            ... OK
+[B]   dequeue.cc           ... OK
+[B]   destroy.cc           ... OK
+[B]   enqueue.cc           ... OK
+[B]   size.cc              ... OK
+[L]                        ... SUCCESS
+make[2]: Leaving directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src/queue'
+
+make[2]: Entering directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src/stack'
+[B]   create.cc            ... OK
+[B]   destroy.cc           ... OK
+[B]   peek.cc              ... OK
+[B]   pop.cc               ... OK
+[B]   push.cc              ... OK
+[B]   size.cc              ... OK
+[L]                        ... SUCCESS
+make[2]: Leaving directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src/stack'
+
+
+make[1]: Leaving directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src'
+
+

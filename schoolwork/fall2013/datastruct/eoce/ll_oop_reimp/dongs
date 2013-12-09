@@ -1,0 +1,26 @@
+make[1]: Entering directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src'
+make[2]: Entering directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src/btree'
+[L]                        ... SUCCESS
+make[2]: Leaving directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src/btree'
+
+make[2]: Entering directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src/list'
+[B]   size.cc              ... OK
+[L]                        ... SUCCESS
+make[2]: Leaving directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src/list'
+
+make[2]: Entering directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src/node'
+[L]                        ... SUCCESS
+make[2]: Leaving directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src/node'
+
+make[2]: Entering directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src/queue'
+[L]                        ... SUCCESS
+make[2]: Leaving directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src/queue'
+
+make[2]: Entering directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src/stack'
+[L]                        ... SUCCESS
+make[2]: Leaving directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src/stack'
+
+
+make[1]: Leaving directory `/home/shawn/src/schoolwork/fall2013/datastruct/eoce/ll_oop_reimp/src'
+
+
