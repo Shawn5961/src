@@ -2,5 +2,10 @@
 
 Node * Stack :: pop()
 {
-	// to be implemented
+	Node *tmp;
+	
+	tmp = this->data->getNode(this->data->getEnd());
+	this->top = this->data->getEnd();
+
+	return tmp;
 }

@@ -3,7 +3,7 @@
 //Needs finished
 void List :: sort()
 {
-	Node *tmp, *tmp2, *tmp3, *tmp4;
+	Node *tmp, *tmp2, *tmp3;
 	
 	int i, count = this->qty;
 	

@@ -4,7 +4,7 @@
 int main()
 {
 	Node *tmp = new Node;
-	Stack *myStack = new Stack(0);
+	Stack *myStack = new Stack(3);
 	tmp -> setValue(fgetc(stdin));
 	fgetc(stdin);
 

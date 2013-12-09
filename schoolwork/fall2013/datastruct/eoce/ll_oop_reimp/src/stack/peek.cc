@@ -2,5 +2,7 @@
 
 Node * Stack :: peek()
 {
-	// to be implemented
+	Node *tmp;
+	tmp = this->pop();
+	this->push(tmp);
 }

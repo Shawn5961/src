@@ -12,5 +12,5 @@ void Stack :: setSize(int size)
 
 int Stack :: getListSize()
 {
-	return (this -> getQuantity());
+	return (this ->data-> getQuantity());
 }

@@ -2,5 +2,10 @@
 
 void Stack :: push(Node *newNode)
 {
-	// to be implemented
+
+	if( (this->size > 0) && ((this->data->getQuantity()) < (this->size)) )
+	{
+		this->data->insert(this->data->getEnd(), newNode);
+		this->top = this->data->getEnd();
+	}
 }

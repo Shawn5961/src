@@ -99,16 +99,16 @@ int main()
 						printf("No list exists. Please build before using\n");
 					else
 					{
-						printf("Get which node?\n");
+/*						printf("Get which node?\n");
 						scanf("%d", &input);
 						Node *tmp = new Node();
 						tmp = myList->getStart();
 
 						for( i = 0; i < input; i++ )
 							tmp = tmp->getNext();
-
-						gottenNode = myList->getNode(tmp);
-						printf("%d", gottenNode->getValue());
+*/
+						gottenNode = myList->getNode(myList->getEnd());
+						printf("%d\n", gottenNode->getValue());
 					}
 					break;
 				}
