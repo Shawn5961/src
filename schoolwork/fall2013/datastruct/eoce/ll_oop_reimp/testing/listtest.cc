@@ -108,7 +108,8 @@ int main()
 							tmp = tmp->getNext();
 */
 						gottenNode = myList->getNode(myList->getEnd());
-						printf("%d\n", gottenNode->getValue());
+						if( gottenNode != NULL )
+							printf("%d\n", gottenNode->getValue());
 					}
 					break;
 				}
